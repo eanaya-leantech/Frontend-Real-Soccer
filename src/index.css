@@ -1,0 +1,14 @@
+*, :before, :after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-size: 16px;
+    font-family: 'Roboto';
+}
+
+a {
+    text-decoration: none;
+}

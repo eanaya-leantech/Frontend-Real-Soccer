@@ -1,0 +1,28 @@
+.main {
+    width: 100%;
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    display: flex;
+}
+
+.content {
+    background: #212737;
+    padding: 1em 2em;
+    width: 100%;
+    transition: all .2s ease;
+}
+
+
+@media screen and (min-width: 767px) {
+    .content {
+        background: #171C28;
+        padding: 1em 2em;
+        width: calc(100% - 60px);
+        margin-left: 60px;
+    }
+
+    .show-menu .content {
+        width: calc(100% - 260px);
+        margin-left: 260px;
+    }
+}

@@ -1,0 +1,27 @@
+.footer{
+    width: 100%;
+    padding: 1em 2em 1em 1em;
+    display: flex;
+    justify-content: flex-end;
+    background: #3c4860;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    height: 50px;
+    z-index: 980;
+    transition: all .2s ease;
+}
+
+
+@media screen and (min-width: 767px){
+
+    .footer{
+        width: calc(100% -  60px);
+        left: 60px;
+    }
+
+    .show-menu .footer{
+        width: calc(100% -  260px);
+        left: 260px;
+    }
+}

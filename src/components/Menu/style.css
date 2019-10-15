@@ -1,0 +1,26 @@
+.menu{
+    width: 260px;
+    height: 100%;
+    background: #282f42;
+    position: fixed;
+    overflow-y: auto;
+    left: -260px;
+    z-index: 1000;
+    transition: all .2s ease;
+}
+
+.show-menu .menu{
+    left: 0;
+}
+
+@media screen and (min-width: 767px){
+    .menu{
+        width: 60px;
+        height: 100%;
+        left: 0;
+    }
+
+    .show-menu .menu{
+        width: 260px;
+    }
+}
