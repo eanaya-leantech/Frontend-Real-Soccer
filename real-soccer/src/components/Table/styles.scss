@@ -1,0 +1,29 @@
+.table {
+  width: 100%;
+  color: #fff;
+  border-collapse: collapse;
+
+  & th {
+    font-size: 20px;
+    background: #282F42;
+    font-weight: normal;
+    text-align: left;
+    padding: 1em;
+  }
+
+  & td {
+    padding: 1em .5em;
+  }
+
+  &.striped {
+    & tbody tr {
+      &:nth-child(odd) {
+        background: #3C4860;
+      }
+
+      &:nth-child(even) {
+        background: #282F42;
+      }
+    }
+  }
+}

@@ -2,9 +2,9 @@ import React from 'react';
 import {BrowserRouter} from "react-router-dom";
 
 import {ErrorBoundary} from "./components/ErrorBoundary";
-import {Routes} from "./Routes";
+import {Routes} from "./components/Routes";
 
-import './index.css';
+import './index.scss';
 
 export const App = () => {
     return (

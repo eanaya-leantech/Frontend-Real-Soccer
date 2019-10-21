@@ -4,7 +4,7 @@ import {Menu} from "./Menu";
 import {Footer} from "./Footer";
 
 
-import './styles.css'
+import './styles.scss'
 
 export const Layout = ({children}) => {
     const [menuShow, setMenuShow] = useState(false);

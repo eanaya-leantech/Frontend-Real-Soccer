@@ -1,18 +1,34 @@
 import React from 'react';
 
 import {Layout} from "../../components/Layout";
+import {Team} from "../../components/Team";
+import {Table} from "../../components/Table";
+import {MenuTeam} from "../../components/MenuTeam";
+import {Card} from "../../components/Card";
 
-export const Home = () => {
-    return(
+export default () => {
+    return (
         <Layout>
-            <div className="home">
-                <section className="info">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi exercitationem laboriosam nobis odit quidem reprehenderit vel voluptatibus voluptatum. Accusantium architecto blanditiis dolorem eveniet expedita laudantium maiores nam pariatur quia, tenetur?
+            <section className="container">
+                <section className="row-50">
+                    <Team/>
+                    <MenuTeam/>
+                    <div className="section-rows" style={{height: '230px'}}>
+                        <div className="row-33">
+                            <Card/>
+                        </div>
+                        <div className="row-33">
+                            <Card/>
+                        </div>
+                        <div className="row-33">
+                            <Card/>
+                        </div>
+                    </div>
                 </section>
-                <section className="table">
-
+                <section className="row-50">
+                    <Table/>
                 </section>
-            </div>
+            </section>
         </Layout>
     )
 };
