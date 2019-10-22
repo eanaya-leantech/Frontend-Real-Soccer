@@ -8,10 +8,11 @@ const Teams = React.lazy(() => import("../../pages/Teams"));
 
 
 export const Routes = () => (
-    <Suspense fallback={<Loading/>}>
-        <Switch>
+    <Switch>
+        <Suspense fallback={<Loading/>}>
             <Route exact path={'/'} component={Home}/>
             <Route path={'/teams'} component={Teams}/>
-        </Switch>
-    </Suspense>
+        </Suspense>
+    </Switch>
+
 );

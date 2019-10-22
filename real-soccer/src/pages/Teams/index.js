@@ -6,7 +6,7 @@ import {Card} from "../../components/Card";
 export default () => {
     return (
         <Layout>
-            <secction className="container-fluid ">
+            <section className="container-fluid ">
                 <section className="section-rows">
                     <div className="row-25">
                         <Card modify/>
@@ -21,7 +21,7 @@ export default () => {
                         <Card modify/>
                     </div>
                 </section>
-            </secction>
+            </section>
         </Layout>
     )
 };
