@@ -1,0 +1,48 @@
+.menu {
+  width: 260px;
+  height: 100%;
+  background: #282f42;
+  position: fixed;
+  overflow-y: auto;
+  left: -260px;
+  z-index: 1000;
+  transition: all .2s ease;
+
+  &-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding: 1.5em 1em;
+    transition: all .3s linear;
+
+    &.active, &:hover {
+      background: #171c28;
+    }
+  }
+}
+
+.show-menu {
+  & .menu {
+    left: 0;
+  }
+}
+
+
+@media screen and (min-width: 767px) {
+
+  .menu {
+    width: 60px;
+    height: 100%;
+    left: 0;
+  }
+
+  .show-menu {
+    & .menu {
+      width: 260px;
+    }
+  }
+}
+
+
+

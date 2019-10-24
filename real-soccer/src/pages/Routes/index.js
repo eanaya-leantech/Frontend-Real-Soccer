@@ -3,8 +3,8 @@ import {Switch, Route} from "react-router-dom";
 
 import {Loading} from '../../components/Loading';
 
-const Home = React.lazy(() => import("../../pages/Home"));
-const Teams = React.lazy(() => import("../../pages/Teams"));
+const Home = React.lazy(() => import("../Home"));
+const Teams = React.lazy(() => import("../Teams"));
 
 
 export const Routes = () => (

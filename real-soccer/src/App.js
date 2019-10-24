@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter} from "react-router-dom";
 
 import {ErrorBoundary} from "./components/ErrorBoundary";
-import {Routes} from "./components/Routes";
+import {Routes} from "./pages/Routes";
 
 import './index.scss';
 
@@ -15,4 +15,5 @@ export const App = () => {
       </ErrorBoundary>
     );
 };
+
 

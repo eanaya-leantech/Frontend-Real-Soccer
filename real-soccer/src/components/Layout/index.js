@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import {Header} from "./Header";
-import {Menu} from "./Menu";
-import {Footer} from "./Footer";
+import {Header} from "./header";
+import {Menu} from "./menu";
+import {Footer} from "./footer";
 
-
-import './styles.scss'
+import './styles.scss';
 
 export const Layout = ({children}) => {
     const [menuShow, setMenuShow] = useState(false);
@@ -20,4 +19,4 @@ export const Layout = ({children}) => {
             </main>
         </div>
     )
-}
+};
