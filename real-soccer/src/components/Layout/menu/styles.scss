@@ -1,10 +1,10 @@
 .menu {
-  width: 260px;
+  width: 200px;
   height: 100%;
   background: #282f42;
   position: fixed;
   overflow-y: auto;
-  left: -260px;
+  left: -200px;
   z-index: 1000;
   transition: all .2s ease;
 
@@ -13,8 +13,11 @@
     justify-content: center;
     align-items: center;
     color: #fff;
-    padding: 1.5em 1em;
+    padding: 1.8em 1em;
     transition: all .3s linear;
+    &-text{
+      display: none;
+    }
 
     &.active, &:hover {
       background: #171c28;
@@ -25,6 +28,16 @@
 .show-menu {
   & .menu {
     left: 0;
+
+    &-item {
+      justify-content: flex-start;
+
+      &-text {
+        white-space: nowrap;
+        margin-left: 2em;
+        display: inline-block;
+      }
+    }
   }
 }
 
@@ -39,7 +52,7 @@
 
   .show-menu {
     & .menu {
-      width: 260px;
+      width: 200px;
     }
   }
 }
