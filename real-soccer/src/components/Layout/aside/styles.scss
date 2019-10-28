@@ -1,0 +1,26 @@
+.aside {
+  width: 260px;
+  height: 100vh;
+  background: #3c4860;
+  position: fixed;
+  right: -260px;
+  top: 0;
+  bottom: 0;
+  z-index: 2000;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .35);
+  transition: all .3s ease-in;
+  padding-top: 2em;
+  overflow-y: auto;
+
+  &.show {
+    right: 0;
+  }
+
+  &-close {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: .5em;
+    right: .5em;
+  }
+}

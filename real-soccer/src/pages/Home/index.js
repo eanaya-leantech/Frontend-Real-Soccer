@@ -1,31 +1,31 @@
 import React from 'react';
 
-import {Layout} from "../../components/Layout";
-import {Team} from "../../components/Team";
-import {Table} from "../../components/Table";
-import {MenuTeam} from "../../components/MenuTeam";
-import {Card} from "../../components/Card";
+import Layout from "../../components/Layout";
+import Team from "../../components/Team";
+import Table from "../../components/Table";
+import MenuTeam from "../../components/MenuTeam";
+import CardAdd from "../../components/CardAdd";
 
 export default () => {
     return (
         <Layout>
-            <section className="container">
-                <section className="row-50">
+            <section className="container-fluid">
+                <section className="col-50">
                     <Team/>
                     <MenuTeam/>
-                    <div className="section-rows" style={{height: '230px'}}>
-                        <div className="row-33">
-                            <Card/>
+                    <div className="row">
+                        <div className="col-33">
+                            <CardAdd add/>
                         </div>
-                        <div className="row-33">
-                            <Card/>
+                        <div className="col-33">
+                            <CardAdd/>
                         </div>
-                        <div className="row-33">
-                            <Card/>
+                        <div className="col-33">
+                            <CardAdd/>
                         </div>
                     </div>
                 </section>
-                <section className="row-50">
+                <section className="col-50">
                     <Table/>
                 </section>
             </section>

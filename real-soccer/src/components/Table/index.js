@@ -1,12 +1,65 @@
 import React from 'react';
-import {Row} from "./Row";
+import Row from "./Row";
 
 import './styles.scss';
 
-const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const data = [
+    {
+        id: 1,
+        position: 'DEF',
+        name: ' Lorem ipsum dolor sit amet'
+    }, {
 
-export const Table = () => (
-    <table className='table striped'>
+        id: 2,
+        position: 'DEF',
+        name: ' Lorem ipsum dolor sit amet'
+    }, {
+
+        id: 3,
+        position: 'MED',
+        name: ' Lorem ipsum dolor sit amet'
+    }
+    , {
+
+        id: 4,
+        position: 'ATK',
+        name: ' Lorem ipsum dolor sit amet'
+    }
+    , {
+
+        id: 5,
+        position: 'ATK',
+        name: ' Lorem ipsum dolor sit amet'
+    }
+    , {
+
+        id: 6,
+        position: 'DEF',
+        name: ' Lorem ipsum dolor sit amet'
+    }
+    , {
+
+        id: 7,
+        position: 'MED',
+        name: ' Lorem ipsum dolor sit amet'
+    }
+    , {
+
+        id: 8,
+        position: 'MED',
+        name: ' Lorem ipsum dolor sit amet'
+    }
+    , {
+
+        id: 9,
+        position: 'MED',
+        name: ' Lorem ipsum dolor sit amet'
+    }
+
+];
+
+const Table = () => (
+    <table className='table striped fixed'>
         <thead>
         <tr>
             <th colSpan="2">
@@ -15,9 +68,12 @@ export const Table = () => (
         </tr>
         </thead>
         <tbody>
-        {data.map((player, index) => (
-            <Row key={index}/>
+        {data && data.map((player) => (
+            <Row key={player.id} {...player}/>
         ))}
         </tbody>
     </table>
 );
+
+export default Table;
+

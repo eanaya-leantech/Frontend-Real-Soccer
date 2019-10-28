@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
-import {Header} from "./Header";
-import {Menu} from "./Menu";
-import {Footer} from "./Footer";
+import PropTypes from 'prop-types';
+import Header from "./header";
+import Menu from "./menu";
+import Footer from "./footer";
+
+import './styles.scss';
 
 
-import './styles.scss'
-
-export const Layout = ({children}) => {
+const Layout = ({children}) => {
     const [menuShow, setMenuShow] = useState(false);
+
     return (
         <div>
             <Header setMenuShow={setMenuShow} menuShow={menuShow}/>
@@ -20,4 +22,10 @@ export const Layout = ({children}) => {
             </main>
         </div>
     )
-}
+};
+
+Layout.propTypes = {
+    children: PropTypes.node
+};
+
+export default Layout;

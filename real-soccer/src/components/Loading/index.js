@@ -1,10 +1,12 @@
 import React from 'react';
 
-export const Loading = () => (
-    <div className="lds-ring">
+const Loading = () => (
+    <div className="loading">
         <div></div>
         <div></div>
         <div></div>
         <div></div>
     </div>
-)
+);
+
+export default Loading;

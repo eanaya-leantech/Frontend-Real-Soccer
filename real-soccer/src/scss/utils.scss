@@ -1,0 +1,36 @@
+//variables
+$colors: (
+        white:#fff,
+        black:#000,
+        primary:#293043,
+        secondary:#171c28,
+        accent:#3C4860
+);
+
+$breakPoints: (
+        ExtraLarge:1200px,
+        Large:992px,
+        Medium:768px,
+        Small:576px,
+);
+
+$menu-width:200px;
+$aside-width:260px;
+
+//mixins
+@mixin queriesMin($key){
+  @media screen and (min-width: map_get($breakPoints,$key)){
+    @content
+  }
+}
+
+@mixin queriesMax($key){
+  @media screen and (min-width: map_get($breakPoints,$key)){
+    @content
+  }
+}
+
+//functions
+@function color($color){
+  @return map_get($colors,$color)
+}

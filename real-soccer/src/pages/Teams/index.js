@@ -1,26 +1,24 @@
 import React from 'react';
 
-import {Layout} from "../../components/Layout";
-import {Card} from "../../components/Card";
+import Layout from "../../components/Layout";
+import CardMatch from "../../components/CardMatch";
 
 export default () => {
     return (
         <Layout>
-            <section className="container-fluid ">
-                <section className="section-rows">
-                    <div className="row-25">
-                        <Card modify/>
+            <section className="container">
+                    <div className="col-25">
+                        <CardMatch/>
                     </div>
-                    <div className="row-25">
-                        <Card modify/>
+                    <div className="col-25">
+                        <CardMatch/>
                     </div>
-                    <div className="row-25">
-                        <Card modify/>
+                    <div className="col-25">
+                        <CardMatch/>
                     </div>
-                    <div className="row-25">
-                        <Card modify/>
+                    <div className="col-25">
+                        <CardMatch/>
                     </div>
-                </section>
             </section>
         </Layout>
     )

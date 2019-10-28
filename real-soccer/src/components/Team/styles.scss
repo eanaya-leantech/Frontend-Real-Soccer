@@ -8,28 +8,13 @@
  color: #fff;
 
   & .logo {
-    width: 170px;
-    height: 186px;
+    width: 160px;
+    height: 176px;
     background: #171c28;
     border-radius: 50%;
   }
 
   & .info {
     width: calc(100% - 200px);
-
-    & .info-item {
-      border-radius: 6px;
-      background: #171c28;
-      padding: 1em;
-    }
-
-    & .new-team {
-      min-height: 45px;
-      margin-bottom: .5em;
-    }
-
-    & .description {
-      min-height: 140px;
-    }
   }
 }

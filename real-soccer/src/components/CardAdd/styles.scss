@@ -1,0 +1,16 @@
+.card-add {
+  width: 100%;
+  background: #282F42;
+  padding: 3.5em 1em 4.5em 1em;
+  border-radius: 6px;
+  height: 100%;
+  position: relative;
+  text-align: center;
+
+  &-icon{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+  }
+}
+
