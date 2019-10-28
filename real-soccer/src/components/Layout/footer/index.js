@@ -1,11 +1,13 @@
 import React from 'react';
-import logo from '../../../assets/images/logo-leantech.png';
+import ImageNotDraggable from '../../ImageNotDraggable';
 import './styles.scss';
 
-export const Footer = () => {
+const Footer = () => {
     return(
         <footer className="footer">
-            <img src={logo} alt=""/>
+            <ImageNotDraggable image={'LOGO_LEAN_TECH'} size={150}/>
         </footer>
     )
 };
+
+export default Footer;

@@ -10,13 +10,7 @@
   height: 51px;
   z-index: 980;
   transition: all .2s ease;
-
-  & img {
-    width: 150px;
-  }
-
 }
-
 
 @media screen and (min-width: 767px) {
   .footer {

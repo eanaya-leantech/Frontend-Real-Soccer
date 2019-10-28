@@ -1,22 +1,18 @@
 import React, {useState} from 'react';
-import {Header} from "./header";
-import {Menu} from "./menu";
-import {Footer} from "./footer";
+import PropTypes from 'prop-types';
+import Header from "./header";
+import Menu from "./menu";
+import Footer from "./footer";
 
 import './styles.scss';
-import {Aside} from "./aside";
 
-export const Layout = ({children}) => {
+
+const Layout = ({children}) => {
     const [menuShow, setMenuShow] = useState(false);
-    const [asideShow, setAsideShow] = useState(false);
+
     return (
         <div>
-            <Header
-                setMenuShow={setMenuShow}
-                menuShow={menuShow}
-                asideShow={asideShow}
-                setAsideShow={setAsideShow}
-            />
+            <Header setMenuShow={setMenuShow} menuShow={menuShow}/>
             <main className={`main ${menuShow ? 'show-menu' : ''}`}>
                 <Menu/>
                 <div className="content">
@@ -24,7 +20,12 @@ export const Layout = ({children}) => {
                     <Footer/>
                 </div>
             </main>
-            <Aside show={asideShow} setShow={setAsideShow}/>
         </div>
     )
 };
+
+Layout.propTypes = {
+    children: PropTypes.node
+};
+
+export default Layout;

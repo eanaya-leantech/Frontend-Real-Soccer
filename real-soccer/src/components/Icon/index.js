@@ -1,11 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import './styles.scss'
 
-export const Icon = ({icon, size, color, ...props}) => (
-    <span {...props}>
-        <i className={`fas ${icon}`}
-           style={{
-               fontSize: `${size}px`,
-               color: `${color || '#fff'}`
-           }}/>
-   </span>
+const Icon = ({size, color, pointer, className, ...props}) => (
+    <i className={`fas ${className}`}
+       {...props}
+       style={{
+           fontSize: `${size || 20}px`,
+           color: `${color || '#fff'}`,
+           cursor: `${pointer ? 'pointer' : 'default'}`
+       }}/>
 );
+
+Icon.propTypes = {
+    size:PropTypes.number,
+    color:PropTypes.string,
+    cursor:PropTypes.string,
+    className:PropTypes.string.isRequired
+};
+
+export default Icon;

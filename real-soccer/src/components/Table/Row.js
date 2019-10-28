@@ -1,14 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const Row = () => (
+const Row = ({id, name, position}) => (
     <tr>
         <td>
-            <span>
-                DEF
-            </span>
+            <span>{position}</span>
         </td>
         <td>
-            Lorem ipsum dolor sit ame
+            {name}
         </td>
     </tr>
 );
+
+Row.propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    position: PropTypes.string.isRequired
+};
+
+export default Row;
+
+

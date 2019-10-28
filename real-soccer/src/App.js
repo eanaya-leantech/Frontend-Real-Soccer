@@ -1,10 +1,10 @@
 import React from 'react';
 import {BrowserRouter} from "react-router-dom";
 
-import {ErrorBoundary} from "./components/ErrorBoundary";
-import {Routes} from "./pages/Routes";
+import ErrorBoundary from "./components/ErrorBoundary";
+import Routes from "./pages/Routes";
 
-import './index.scss';
+import './scss/index.scss';
 
 export const App = () => {
     return (
