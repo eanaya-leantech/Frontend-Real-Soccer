@@ -1,0 +1,20 @@
+.team {
+  width: 100%;
+  background: #282F42;
+  border-radius: 6px;
+  padding: 2em;
+  display: flex;
+  justify-content: space-between;
+ color: #fff;
+
+  & .logo {
+    width: 160px;
+    height: 176px;
+    background: #171c28;
+    border-radius: 50%;
+  }
+
+  & .info {
+    width: calc(100% - 200px);
+  }
+}
