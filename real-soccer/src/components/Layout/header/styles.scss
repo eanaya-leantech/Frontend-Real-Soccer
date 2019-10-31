@@ -1,43 +1,7 @@
 .header {
   width: 100%;
   height: 90px;
-  position: fixed;
-  top: 0;
-  left: 0;
   background: #293043;
-  padding: 1em 2em 1em 1.3em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #fff;
-  z-index: 1030;
-
-  & .icon {
-    width: 60px;
-    display: flex;
-    justify-content: flex-start;
-    font-size: 20px;
-    flex: 1;
-  }
-
-  & .title {
-    font-size: 22px;
-    flex: 2;
-    text-align: center;
-  }
-
-  & .info {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: flex-end;
-
-    & .money {
-      border-radius: 6px;
-      background: #171C28;
-      padding: .5em;
-    }
-  }
 }
 
 

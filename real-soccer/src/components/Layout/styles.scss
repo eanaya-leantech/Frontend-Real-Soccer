@@ -1,34 +1,67 @@
-.main {
+$menu-width: 60px;
+$menu-height: 90px;
+$footer-height: 50px;
+$menu-show-width: 200px;
+$layout-width: 1366px;
+$layout-height: 768px;
+$totalHeight: calc(#{$menu-height} + #{$footer-height});
+
+.app {
   width: 100%;
-  margin-top: 90px;
+  height: 100vh;
+  @media screen and (min-width: $layout-width) {
+    //aqui debe ir la imagen
+  }
+}
+
+.layout {
+  width: 100%;
+  max-width: $layout-width;
   height: 100%;
-  min-height: calc(100vh - 90px);
-  display: flex;
-}
-
-.content {
-  background: #171C28;
-  padding: 1em 2em;
-  width: 100%;
-  transition: all .2s ease;
-  margin-bottom: 50px;
-}
-
-
-@media screen and (min-width: 767px) {
-  .content {
-    padding: 1em 2em;
-    width: calc(100% - 60px);
-    margin-left: 60px;
+  background: #171c28;
+  @media screen and (min-width: $layout-width) {
+    height: $layout-height;
   }
 
-  .show-menu {
-    & .content {
-      width: calc(100% - 200px);
-      margin-left: 200px;
+  &-app {
+    height: calc(100% - #{$menu-height});
+  }
+
+  &-menu {
+    width: $menu-width;
+    height: 100%;
+    transition: all .5s ease;
+    overflow-x: hidden;
+  }
+
+  &-main {
+    width: calc(100% - #{$menu-width});
+    transition: all .5s ease;
+    position: relative;
+    height: 100%;
+
+    .content {
+      padding: 2em;
+      height: calc(100% - #{$footer-height});
+      overflow-y: auto;
+      @media screen and (min-width: $layout-width) {
+        height: calc(#{$layout-height} - #{$totalHeight});
+      }
+
+    }
+  }
+
+  &.show {
+    .layout-menu {
+      width: $menu-show-width;
+    }
+
+    .layout-main {
+      width: calc(100% - #{$menu-show-width});
     }
   }
 }
+
 
 
 

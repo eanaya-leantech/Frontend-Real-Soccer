@@ -2,11 +2,14 @@ import React from 'react';
 
 import './styles.scss';
 import ImageNotDraggable from "../ImageNotDraggable";
+import {Box} from "@material-ui/core";
 
 const CardMatch = () => (
-    <div className={'card-math'}>
+    <Box className={'card-math'}>
         <ImageNotDraggable
-            image={'https://www.estrelladigital.es/media/estrelladigital/images/2017/10/03/2017100313001757139.jpg'}
+            width={'100%'}
+            height={'70%'}
+            url={'https://www.estrelladigital.es/media/estrelladigital/images/2017/10/03/2017100313001757139.jpg'}
             className={'card-math-img'}
         />
         <section className={'card-math-info'}>
@@ -15,7 +18,7 @@ const CardMatch = () => (
                 play with friends or with other city teams.
             </p>
         </section>
-    </div>
+    </Box>
 );
 
 export default CardMatch;
