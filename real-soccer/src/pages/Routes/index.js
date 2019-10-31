@@ -6,7 +6,7 @@ import login from '../login';
 
 const Home = React.lazy(() => import("../Home"));
 const Teams = React.lazy(() => import("../Teams"));
-
+const Register = React.lazy(() => import("../Register"));
 
 const Routes = () => (
     <Switch>
@@ -14,6 +14,7 @@ const Routes = () => (
             <Route exact path={'/'} component={Home}/>
             <Route path={'/teams'} component={Teams}/>
             <Route path={'/login'} component={login}/>
+            <Route path={'/register'} component={Register}/>
         </Suspense>
     </Switch>
 );
