@@ -1,9 +1,70 @@
 .header {
   width: 100%;
   height: 90px;
+  top: 0;
+  left: 0;
   background: #293043;
+  padding: 1em 2em 1em 1.3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  z-index: 1030;
+
+  & .icon {
+    width: 60px;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 20px;
+    @media screen and (min-width: 992px) {
+      flex: 1;
+    }
+  }
+
+  & .title {
+    flex: 1;
+
+    &-text {
+      margin-right: .3em;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    @media screen and (min-width: 992px) {
+      text-align: center;
+    }
+    @media screen and (min-width: 1200px) {
+      flex: 2;
+    }
+  }
+
+  & .info {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+
+    & .money {
+      border-radius: 6px;
+      background: #171C28;
+
+      &-icon {
+        margin-right: .5em;
+        margin-left: .5em;
+        vertical-align: middle;
+      }
+
+      &-text {
+        border-left: 1px solid #293043;
+        display: inline-block;
+        padding: .5em;
+      }
+    }
+
+    .config {
+      img {
+        margin-left: 2em;
+      }
+    }
+  }
 }
-
-
-
-

@@ -9,7 +9,14 @@ import TSHIRT from './icons/tshirt-solid.svg';
 import USERS from './icons/users-solid.svg';
 import USER_CONG from './icons/user-cog-solid.svg';
 import DUMBBELL from './icons/dumbbell-solid.svg';
-import BARS from './icons/bars-solid.svg'
+import BARS from './icons/bars-solid.svg';
+import LOGO from './icons/logo.svg';
+import COG from './icons/cog-solid.svg';
+import PLUS from './icons/plus-solid.svg';
+import CALENDAR from './icons/calendar-day-solid.svg';
+import CLIPBOARD from './icons/clipboard-list-solid.svg';
+import ENVELOPE from './icons/envelope-solid.svg';
+import LIST_OL from './icons/list-ol-solid.svg';
 
 export default {
     LOGO_LEAN_TECH,
@@ -23,5 +30,13 @@ export default {
     USERS,
     USER_CONG,
     DUMBBELL,
-    BARS
+    BARS,
+    LOGO,
+    COG,
+    PLUS,
+    CALENDAR,
+    CLIPBOARD,
+    ENVELOPE,
+    LIST_OL
+
 };

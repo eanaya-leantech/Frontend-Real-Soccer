@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {Box, Grid} from "@material-ui/core";
-
+import {Grid} from "@material-ui/core";
 import Header from "./header";
 import Footer from "./footer";
 import Menu from "./menu";
@@ -13,16 +12,16 @@ const Layout = ({children}) => {
     const [show, setShow] = useState(false);
     return (
         <Grid container alignItems={'center'} justify={'center'} className='app'>
-            <Grid item className={`layout ${show && 'show'}`} >
+            <Grid className={`layout ${show && 'show'}`} >
                 <Header show={show} setShow={setShow}/>
                 <Grid container className='layout-app'>
                     <Grid item className={'layout-menu'}>
                         <Menu show={show}/>
                     </Grid>
                     <Grid item className={'layout-main'}>
-                        <Grid className={'content'} container justify={'center'}>
+                        <section className={'content'}>
                             {children}
-                        </Grid>
+                        </section>
                         <Footer/>
                     </Grid>
                 </Grid>

@@ -1,0 +1,35 @@
+.match-item {
+  width: 100%;
+  background: #3C4860;
+  border-radius: 6px;
+  height: 100%;
+  padding-bottom: 1em;
+  transition: all 220ms ease;
+
+  &:hover{
+    box-shadow: 0 10px 10px -10px #000;
+    transform: scale(1.01);
+  }
+
+  & img {
+    object-fit: cover;
+    border-radius: 6px 6px 0 0;
+  }
+
+  & .match-info {
+    padding: 1em 1em;
+    text-align: center;
+    height: 30%;
+    overflow: hidden;
+
+    & .text {
+      width: 80%;
+      overflow: hidden;
+      margin: auto;
+      max-height: 70px;
+    }
+  }
+}
+
+
+

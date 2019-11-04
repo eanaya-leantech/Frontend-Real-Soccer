@@ -1,23 +1,24 @@
 import React from 'react';
 import {Grid} from "@material-ui/core";
-import Loading from '../../components/Loading';
 
 import Layout from "../../components/Layout";
-import CardMatch from "../../components/CardMatch";
+import MatchItem from "../../components/MatchItem";
 
 const Matches = () => {
     const data = [1, 2, 3, 4];
     return (
         <Layout>
-            <Grid item md={11} container spacing={3}>
-                {
-                    data.map(item => (
-                        <Grid item sm={12} md={3} key={item}>
-                            <CardMatch/>
-                        </Grid>
-                    ))
-                }
-            </Grid>
+           <div className="container">
+               <Grid container spacing={3} className="h-100">
+                   {
+                       data.map(item => (
+                           <Grid item sm={12} md={3} key={item}>
+                               <MatchItem/>
+                           </Grid>
+                       ))
+                   }
+               </Grid>
+           </div>
         </Layout>
     )
 };
