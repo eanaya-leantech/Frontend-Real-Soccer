@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './styles.scss';
-import Icon from "../../Icon";
 
-const Aside = ({show, setShow, children}) => (
-    <aside className={`aside ${show ? 'show' : ''}`}>
-        <Icon className={"fa-times aside-close"} pointer
-            onClick={() => setShow(!show)}
-        />
+const Aside = ({children}) => (
+    <aside>
         {children}
     </aside>
 );
+
+Aside.propTypes = {
+    children: PropTypes.element.isRequired
+};
 
 export default Aside;

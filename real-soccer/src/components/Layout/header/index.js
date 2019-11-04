@@ -1,56 +1,51 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {IconButton } from "@material-ui/core";
+import ImageNotDraggable from "../../ImageNotDraggable";
+import Text from "../../Text/Text";
 import './styles.scss';
-import Icon from "../../Icon";
-import Aside from "../aside";
 
-const Header = ({setMenuShow, menuShow}) => {
-
-    const [showNotifications, setShowNotifications] = useState(false);
-    const [showSetting, setShowSetting] = useState(false);
-
+const Header = ({show, setShow}) => {
     return (
-        <>
             <header className="header">
-                <span className='icon'>
-                    <Icon className={'fa-bars'} pointer
-                          onClick={() => setMenuShow(!menuShow)}
+                <div className='icon'>
+                <IconButton >
+                    <ImageNotDraggable width={'22px'} cursor={'pointer'} image={'BARS'}
+                                       onClick={() => setShow(!show)}
                     />
-                </span>
-                <h1 className="title">
-                    Real Soccer
-                    <Icon size={22} className={'fa-running ml-1'}/>
-                    <Icon size={10} className={'fa-futbol'}/>
-                </h1>
+                </IconButton >
+                </div>
+                <div className="title">
+                    <Text component={'h1'} fontSize={'20px'} className={' title-text '}>
+                        Real Soccer
+                    </Text>
+                    <ImageNotDraggable width={'28px'} image={'LOGO'}/>
+                </div>
                 <div className="info">
                     <span className="money">
-                         <Icon className={'fa-money-bill-wave mr-2'} color={'#3C4860'}/>
-                          <span>$ 105.000.000</span>
+                          <ImageNotDraggable width={'22px'} image={'MONEY_BILL_WAVE'} className="money-icon"/>
+                          <Text component={'span'} className={' money-text'}>
+                            $ 105.000.000
+                          </Text>
                     </span>
                     <div className="config">
-                        <Icon className={'fa-bell ml-3 notification'} pointer
-                              onClick={() => setShowNotifications(!showNotifications)}
+                        <IconButton >
+                            <ImageNotDraggable width={'22px'} image={'BELL_SOLID'}/>
+                        </IconButton>
+                        <IconButton >
+                            <ImageNotDraggable width={'22px'} image={'COG'}/>
+                        </IconButton>
 
-                        />
-                        <Icon className={"fa-cog ml-3"} pointer
-                              onClick={() => setShowSetting(!showSetting)}
-                        />
+
                     </div>
                 </div>
             </header>
-            <Aside show={showNotifications}
-                   setShow={setShowNotifications}>
-                <div>
-                    aqui debe mostrar las notificaciones
-                </div>
-            </Aside>
-            <Aside show={showSetting}
-                   setShow={setShowSetting}>
-                <div>
-                    aqui debe mostrar los mensajes
-                </div>
-            </Aside>
-        </>
     )
+};
+
+Header.propTypes = {
+    show: PropTypes.bool.isRequired,
+    setShow: PropTypes.func
 };
 
 export default Header;

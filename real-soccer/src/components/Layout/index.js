@@ -1,31 +1,37 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {Grid} from "@material-ui/core";
 import Header from "./header";
-import Menu from "./menu";
 import Footer from "./footer";
+import Menu from "./menu";
 
 import './styles.scss';
 
 
 const Layout = ({children}) => {
-    const [menuShow, setMenuShow] = useState(false);
-
+    const [show, setShow] = useState(false);
     return (
-        <div>
-            <Header setMenuShow={setMenuShow} menuShow={menuShow}/>
-            <main className={`main ${menuShow ? 'show-menu' : ''}`}>
-                <Menu/>
-                <div className="content">
-                    {children}
-                    <Footer/>
-                </div>
-            </main>
-        </div>
+        <Grid container alignItems={'center'} justify={'center'} className='app'>
+            <Grid className={`layout ${show && 'show'}`} >
+                <Header show={show} setShow={setShow}/>
+                <Grid container className='layout-app'>
+                    <Grid item className={'layout-menu'}>
+                        <Menu show={show}/>
+                    </Grid>
+                    <Grid item className={'layout-main'}>
+                        <section className={'content'}>
+                            {children}
+                        </section>
+                        <Footer/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     )
 };
 
 Layout.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.element.isRequired
 };
 
 export default Layout;

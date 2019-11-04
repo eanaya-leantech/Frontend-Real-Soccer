@@ -1,22 +1,34 @@
 .menu {
-  width: 200px;
+  width: 100%;
   height: 100%;
   background: #282f42;
-  position: fixed;
-  overflow-y: auto;
-  left: -200px;
-  z-index: 1000;
-  transition: all .2s ease;
 
-  &-item {
+  &.MuiList-padding,
+  & &-item {
+    padding: 0;
+  }
+
+  &-link {
+    padding: 1.8em 1.3em;
     display: flex;
-    justify-content: center;
+    width: 100%;
+    justify-content: flex-start;
     align-items: center;
-    color: #fff;
-    padding: 1.8em 1em;
-    transition: all .3s linear;
-    &-text{
-      display: none;
+    color: #ffffff;
+
+    &.true {
+      justify-content: flex-start;
+
+      & .link-text {
+        opacity: 1;
+      }
+    }
+
+    & .link-text {
+      white-space: nowrap;
+      transition: opacity 220ms ease;
+      margin-left: 1em;
+      opacity: 0;
     }
 
     &.active, &:hover {
@@ -24,38 +36,4 @@
     }
   }
 }
-
-.show-menu {
-  & .menu {
-    left: 0;
-
-    &-item {
-      justify-content: flex-start;
-
-      &-text {
-        white-space: nowrap;
-        margin-left: 2em;
-        display: inline-block;
-      }
-    }
-  }
-}
-
-
-@media screen and (min-width: 767px) {
-
-  .menu {
-    width: 60px;
-    height: 100%;
-    left: 0;
-  }
-
-  .show-menu {
-    & .menu {
-      width: 200px;
-    }
-  }
-}
-
-
 

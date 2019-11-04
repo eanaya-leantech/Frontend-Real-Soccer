@@ -1,18 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {IMAGES} from "../../assets/images";
+import ASSETS from "../../assets/assets";
 
-const ImageNotDraggable = ({image, size,className}) => (
-    <img src={IMAGES[image] || image} alt=""
-         width={size} draggable='false'
-         className={className}
+const ImageNotDraggable = ({width, height = 'auto', image, url, cursor = 'inherit', ...props}) => (
+    <img
+        {...props}
+        src={image ? ASSETS[image] : url}
+        draggable='false'
+        style={{
+            width,
+            height,
+            cursor
+        }}
     />
 );
 
 ImageNotDraggable.propTypes = {
-    image: PropTypes.string.isRequired,
-    size: PropTypes.number,
-    className:PropTypes.string
+    width: PropTypes.string.isRequired,
+    height: PropTypes.string,
+    image: PropTypes.string,
+    url: PropTypes.string,
+    cursor: PropTypes.string
 };
 
 export default ImageNotDraggable;

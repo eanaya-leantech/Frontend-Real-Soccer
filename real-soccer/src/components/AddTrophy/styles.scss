@@ -1,0 +1,21 @@
+.trophy {
+  width: 100%;
+  padding: 2em 1em;
+  border-radius: 6px;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  background-color: #282F42;
+  background-image:  url("../../assets/icons/trophy-solid.svg");
+  background-size: calc(100% - 1.5em);
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+  &-icon.MuiButtonBase-root{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
