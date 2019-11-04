@@ -10,7 +10,9 @@ export const App = () => {
     return (
         <ErrorBoundary>
             <BrowserRouter>
+                <div className={'root'}>
                     <Routes/>
+                </div>
             </BrowserRouter>
         </ErrorBoundary>
     );

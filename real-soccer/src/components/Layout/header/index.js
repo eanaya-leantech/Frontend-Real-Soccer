@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {IconButton } from "@material-ui/core";
 import ImageNotDraggable from "../../ImageNotDraggable";
 import Text from "../../Text/Text";
 import './styles.scss';
@@ -8,9 +9,11 @@ const Header = ({show, setShow}) => {
     return (
             <header className="header">
                 <div className='icon'>
+                <IconButton >
                     <ImageNotDraggable width={'22px'} cursor={'pointer'} image={'BARS'}
                                        onClick={() => setShow(!show)}
                     />
+                </IconButton >
                 </div>
                 <div className="title">
                     <Text component={'h1'} fontSize={'20px'} className={' title-text '}>
@@ -26,8 +29,14 @@ const Header = ({show, setShow}) => {
                           </Text>
                     </span>
                     <div className="config">
-                        <ImageNotDraggable width={'22px'} image={'BELL_SOLID'}/>
-                        <ImageNotDraggable width={'22px'} image={'COG'}/>
+                        <IconButton >
+                            <ImageNotDraggable width={'22px'} image={'BELL_SOLID'}/>
+                        </IconButton>
+                        <IconButton >
+                            <ImageNotDraggable width={'22px'} image={'COG'}/>
+                        </IconButton>
+
+
                     </div>
                 </div>
             </header>
