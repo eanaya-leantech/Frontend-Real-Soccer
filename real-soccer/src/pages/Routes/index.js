@@ -2,6 +2,7 @@ import React, {Suspense} from 'react';
 import {Switch, Route} from "react-router-dom";
 
 import Loading from '../../components/Loading';
+import login from '../login';
 
 const Matches = React.lazy(() => import("../Matches"));
 const MyTeam = React.lazy(() => import("../MyTeam"));
@@ -23,6 +24,7 @@ const Routes = () => (
             <Route path={'/friends'} component={NotFound}/>
             <Route path={'/analytics'} component={NotFound}/>
             <Route path={'/register'} component={Register}/>
+            <Route path={'/login'} component={login}/>
         </Suspense>
     </Switch>
 );

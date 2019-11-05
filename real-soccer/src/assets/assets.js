@@ -19,6 +19,8 @@ import ENVELOPE from './icons/envelope-solid.svg';
 import LIST_OL from './icons/list-ol-solid.svg';
 import USER_PLUS from './icons/user-plus-solid.svg';
 import MINIMUS from './icons/minus-circle-solid.svg';
+import PERSON from './images/loginImage.png';
+import USER from './icons/user-solid.svg';
 
 export default {
     LOGO_LEAN_TECH,
@@ -41,6 +43,7 @@ export default {
     ENVELOPE,
     LIST_OL,
     USER_PLUS,
-    MINIMUS
-
+    MINIMUS,
+    PERSON,
+    USER
 };
