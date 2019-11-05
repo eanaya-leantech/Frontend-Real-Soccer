@@ -7,10 +7,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { IconButton } from "@material-ui/core";
 // import Link from '@material-ui/core/Link';
 import clsx from 'clsx';
-import Layout from '../../components/LayoutPreLogin';
-import ImageNotDraggable from '../../components/ImageNotDraggable';
+import Layout from '../../../components/LayoutPreLogin';
+import ImageNotDraggable from '../../../components/ImageNotDraggable';
+import Text from '../../../components/Text/Text';
 import './styles.scss';
-import Text from '../../components/Text/Text';
 
 const useStyles = makeStyles({
     root: {
