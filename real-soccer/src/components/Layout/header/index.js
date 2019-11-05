@@ -35,8 +35,6 @@ const Header = ({show, setShow}) => {
                         <IconButton >
                             <ImageNotDraggable width={'22px'} image={'COG'}/>
                         </IconButton>
-
-
                     </div>
                 </div>
             </header>

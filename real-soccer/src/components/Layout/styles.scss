@@ -58,6 +58,9 @@ $totalHeight: calc(#{$menu-height} + #{$footer-height});
       padding: 2em;
       height: calc(100% - #{$footer-height});
       overflow-y: auto;
+      @media screen and (min-width: 960px) {
+        overflow-y: hidden;
+      }
       @media screen and (min-width: $layout-width) {
         height: calc(#{$layout-height} - #{$totalHeight});
       }
