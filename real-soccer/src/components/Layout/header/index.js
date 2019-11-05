@@ -9,9 +9,9 @@ const Header = ({show, setShow}) => {
     return (
             <header className="header">
                 <div className='icon'>
-                <IconButton >
+                <IconButton   onClick={() => setShow(!show)}>
                     <ImageNotDraggable width={'22px'} cursor={'pointer'} image={'BARS'}
-                                       onClick={() => setShow(!show)}
+
                     />
                 </IconButton >
                 </div>

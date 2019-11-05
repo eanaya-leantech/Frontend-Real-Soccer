@@ -17,6 +17,8 @@ import CALENDAR from './icons/calendar-day-solid.svg';
 import CLIPBOARD from './icons/clipboard-list-solid.svg';
 import ENVELOPE from './icons/envelope-solid.svg';
 import LIST_OL from './icons/list-ol-solid.svg';
+import USER_PLUS from './icons/user-plus-solid.svg';
+import MINIMUS from './icons/minus-circle-solid.svg';
 
 export default {
     LOGO_LEAN_TECH,
@@ -37,6 +39,8 @@ export default {
     CALENDAR,
     CLIPBOARD,
     ENVELOPE,
-    LIST_OL
+    LIST_OL,
+    USER_PLUS,
+    MINIMUS
 
 };
