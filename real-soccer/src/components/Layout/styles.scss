@@ -64,14 +64,13 @@ $totalHeight: calc(#{$menu-height} + #{$footer-height});
       @media screen and (min-width: $layout-width) {
         height: calc(#{$layout-height} - #{$totalHeight});
       }
-
     }
   }
 
   &.show {
     .layout-menu {
       width: $menu-show-width;
-      box-shadow: 8px 16px 20px 0 rgba(0,0,0,.12);
+      box-shadow: 8px 16px 20px 0 rgba(0, 0, 0, .12);
     }
 
     .layout-main {
