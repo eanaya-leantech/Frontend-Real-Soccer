@@ -9,13 +9,21 @@ $totalHeight: calc(#{$menu-height} + #{$footer-height});
 .app {
   width: 100%;
   height: 100vh;
+  position: relative;
+ 
   @media screen and (min-width: 960px) {
-    background-image: url('../../assets/images/Background.jpg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
+
+    &::before{
+      content: '';
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('../../assets/images/Background.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: blur(6px);
+    }
   };
-  
 
 }
 
@@ -25,6 +33,9 @@ $totalHeight: calc(#{$menu-height} + #{$footer-height});
   height: 100%;
   background: #171c28;
   filter: drop-shadow(8px 8px 8px rgba(7, 14, 7, 0.836));
+  position: relative;
+  z-index: 5;
+
   @media screen and (min-width: 960px) {
     height: $layout-height;
   }

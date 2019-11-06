@@ -1,0 +1,16 @@
+.state {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin: .3em;
+  vertical-align: middle;
+}
+
+.active {
+  background-color: rgb(95, 159, 90);
+}
+
+.unactive {
+  background-color: rgb(159,73, 88);
+}

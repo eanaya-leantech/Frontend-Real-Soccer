@@ -4,7 +4,7 @@ import ASSETS from "../../assets/assets";
 import { display } from '@material-ui/system';
 import "./styles.scss";
 const ImageNotDraggable = ({width, height = 'auto', image, url, cursor = 'inherit', ...props}) => (
-    <div className='image-container'>
+    
     <img
         {...props}
         src={image ? ASSETS[image] : url}
@@ -15,7 +15,7 @@ const ImageNotDraggable = ({width, height = 'auto', image, url, cursor = 'inheri
             cursor
         }}
     />
-    </div>
+    
 );
 
 ImageNotDraggable.propTypes = {
