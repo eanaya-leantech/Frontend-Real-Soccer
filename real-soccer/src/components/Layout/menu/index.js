@@ -10,49 +10,49 @@ const Menu = ({show}) => (
     <List component="nav" className='menu'>
         <ListItem className="menu-item">
             <NavLink to={'/matches'} className={`menu-link ${show}`}>
-                <div><ImageNotDraggable width={'20px'} image={'FUTBOL'}/></div>
+                <span><ImageNotDraggable width={'20px'} image={'FUTBOL'}/></span>
                 <Text className={'link-text'} component={'span'}>Matches</Text>
             </NavLink>
         </ListItem>
         <ListItem className="menu-item">
             <NavLink exact to={'/'} className={`menu-link ${show}`}>
-                <div><ImageNotDraggable image={'USER_CONG'} width={'20px'}/></div>
+                <span><ImageNotDraggable image={'USER_CONG'} width={'20px'}/></span>
                 <Text className={'link-text'} component={'span'}>My team</Text>
             </NavLink>
         </ListItem>
         <ListItem className="menu-item">
             <NavLink to={'/store'} className={`menu-link ${show}`}>
-                <div><ImageNotDraggable image={'STORE_ALT'} width={'20px'}/></div>
+                <span><ImageNotDraggable image={'STORE_ALT'} width={'20px'}/></span>
                 <Text className={'link-text'} component={'span'}>Store</Text>
             </NavLink>
         </ListItem>
         <ListItem className="menu-item">
             <NavLink to={'/uniforms'} className={`menu-link ${show}`}>
-                <div><ImageNotDraggable image={'TSHIRT'} width={'20px'}/></div>
+                <span><ImageNotDraggable image={'TSHIRT'} width={'20px'}/></span>
                 <Text className={'link-text'} component={'span'}>Uniforms</Text>
             </NavLink>
         </ListItem>
         <ListItem className="menu-item">
             <NavLink to={'/trophy'} className={`menu-link ${show}`}>
-                <div><ImageNotDraggable image={'MEDAL_SOLID'} width={'20px'}/></div>
+                <span><ImageNotDraggable image={'MEDAL_SOLID'} width={'20px'}/></span>
                 <Text className={'link-text'} component={'span'}>Trophy</Text>
             </NavLink>
         </ListItem>
         <ListItem className="menu-item">
             <NavLink to={'/gym'} className={`menu-link ${show}`}>
-                <div><ImageNotDraggable image={'DUMBBELL'} width={'20px'}/></div>
+                <span><ImageNotDraggable image={'DUMBBELL'} width={'20px'}/></span>
                 <Text className={'link-text'} component={'span'}>Gym</Text>
             </NavLink>
         </ListItem>
         <ListItem className="menu-item">
             <NavLink to={'/friends'} className={`menu-link ${show}`}>
-                <div><ImageNotDraggable image={'USERS'} width={'20px'}/></div>
+                <span><ImageNotDraggable image={'USERS'} width={'20px'}/></span>
                 <Text className={'link-text'} component={'span'}>Friends</Text>
             </NavLink>
         </ListItem>
         <ListItem className="menu-item">
             <NavLink to={'/analytics'} className={`menu-link ${show}`}>
-                <div><ImageNotDraggable image={'CHART_LINE'} width={'20px'}/></div>
+                <span><ImageNotDraggable image={'CHART_LINE'} width={'20px'}/></span>
                 <Text className={'link-text'} component={'span'}>Analytics</Text>
             </NavLink>
         </ListItem>

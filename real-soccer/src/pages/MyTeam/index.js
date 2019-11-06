@@ -5,7 +5,7 @@ import AddTrophy from "../../components/AddTrophy";
 import FormTeam from "../../components/FormTeam";
 import NavbarTeam from "../../components/NavbarTeam";
 import './styles.scss';
-import Table from "../../components/Table";
+import PlayerList from "../../components/PlayerList";
 
 const data = [1, 2, 3];
 
@@ -34,7 +34,7 @@ export default () => {
 
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <Table/>
+                    <PlayerList/>
                 </Grid>
             </Grid>
         </Layout>

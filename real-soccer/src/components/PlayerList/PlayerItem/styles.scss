@@ -1,0 +1,14 @@
+.player-item {
+  & td {
+    padding: .5em;
+    border: none;
+  }
+
+  &:nth-child(even) {
+    background: #293043;
+  }
+
+  &:nth-child(odd) {
+    background: #3C4860;
+  }
+}

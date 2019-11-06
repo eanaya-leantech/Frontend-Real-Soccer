@@ -1,11 +1,12 @@
 import React from 'react';
 import {Box} from "@material-ui/core";
+import PropTypes from 'prop-types';
 import ImageNotDraggable from "../ImageNotDraggable";
 import Text from "../Text/Text";
 import './styles.scss';
 
-const MatchItem = () => (
-    <Box className={'match-item'}>
+const MatchItem = ({image, title, text, ...props}) => (
+    <Box className={'match-item'} {...props}>
         <ImageNotDraggable
             width={'100%'}
             height={'70%'}
@@ -22,5 +23,9 @@ const MatchItem = () => (
         </section>
     </Box>
 );
+
+MatchItem.propTypes = {
+  //...propTypes
+};
 
 export default MatchItem;

@@ -4,8 +4,9 @@ import {IconButton} from "@material-ui/core";
 import './styles.scss';
 import Text from "../Text/Text";
 import ImageNotDraggable from "../ImageNotDraggable";
+import PlayerItem from "./PlayerItem";
 
-const data = [
+const players = [
     {
         id: 1,
         position: 'DEF',
@@ -96,7 +97,7 @@ const data = [
 
 ];
 
-const Table = () => (
+const PlayerList = () => (
     <div className={'payerList'}>
         <section className="payerList-header">
             <Text component={'h3'} fontSize={'18px'}>Player List</Text>
@@ -108,16 +109,8 @@ const Table = () => (
             <table className='table'>
                 <tbody>
                 {
-                    data.map(row => (
-                        <tr key={row.id}>
-                            <td width={'20px'} className={row.position}>{row.position}</td>
-                            <td>{row.name}</td>
-                            <td width={'20px'}>
-                                <IconButton onClick={() => alert('remove')}>
-                                    <ImageNotDraggable width={'20px'} image={'MINIMUS'}/>
-                                </IconButton>
-                            </td>
-                        </tr>
+                    players.map(player => (
+                       <PlayerItem {...player} key={player.id}/>
                     ))
                 }
                 </tbody>
@@ -126,5 +119,5 @@ const Table = () => (
     </div>
 );
 
-export default Table;
+export default PlayerList;
 
