@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {IconButton} from "@material-ui/core";
 import ImageNotDraggable from "../../ImageNotDraggable";
 
+import './styles.scss';
+
 const PlayerItem = ({id, name, position}) => (
     <tr className={'player-item'}>
         <td width={'20px'} className={position}>{position}</td>
