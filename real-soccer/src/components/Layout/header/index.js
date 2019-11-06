@@ -18,8 +18,7 @@ const Header = ({show, setShow}) => {
                 <div className="title">
                     <Text component={'h1'} fontSize={'20px'} className={' title-text '}>
                         Real Soccer
-                    </Text>
-                    <ImageNotDraggable width={'28px'} image={'LOGO'}/>
+                    </Text><ImageNotDraggable width={'28px'} image={'LOGO'}/>
                 </div>
                 <div className="info">
                     <span className="money">

@@ -9,11 +9,13 @@ $totalHeight: calc(#{$menu-height} + #{$footer-height});
 .app {
   width: 100%;
   height: 100vh;
-  @media screen and (min-width: $layout-width) {
+  @media screen and (min-width: 960px) {
     background-image: url('../../assets/images/Background.jpg');
     background-size: cover;
-    background-position: center;;
+    background-position: center;
+    position: relative;
   };
+  
 
 }
 
@@ -22,6 +24,7 @@ $totalHeight: calc(#{$menu-height} + #{$footer-height});
   max-width: $layout-width;
   height: 100%;
   background: #171c28;
+  filter: drop-shadow(8px 8px 8px rgba(7, 14, 7, 0.836));
   @media screen and (min-width: 960px) {
     height: $layout-height;
   }
