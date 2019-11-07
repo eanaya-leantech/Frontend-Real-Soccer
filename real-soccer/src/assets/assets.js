@@ -21,6 +21,7 @@ import USER_PLUS from './icons/user-plus-solid.svg';
 import MINIMUS from './icons/minus-circle-solid.svg';
 import PERSON from './images/loginImage.png';
 import USER from './icons/user-solid.svg';
+import EMAIL from './icons/email-solid.svg';
 
 export default {
     LOGO_LEAN_TECH,
@@ -45,5 +46,6 @@ export default {
     USER_PLUS,
     MINIMUS,
     PERSON,
-    USER
+    USER,
+    EMAIL
 };
