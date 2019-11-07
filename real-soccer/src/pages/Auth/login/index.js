@@ -114,7 +114,7 @@ export default function SpacingGrid() {
                         className="remember"
                         label="Remember me"
                     />
-                    <Link>
+                    <Link to={'/forgotpassword'}>
                         <Text fontSize=".7em" className="forgot" color="#707070">
                             Forgot Password?
                         </Text>
