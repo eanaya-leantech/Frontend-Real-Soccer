@@ -22,6 +22,8 @@ import MINIMUS from './icons/minus-circle-solid.svg';
 import PERSON from './images/loginImage.png';
 import USER from './icons/user-solid.svg';
 import EMAIL from './icons/email-solid.svg';
+import VISIBILITY from './icons/visibility.svg';
+import VISIBILITY_OFF from './icons/visibility-off.svg';
 
 export default {
     LOGO_LEAN_TECH,
@@ -47,5 +49,7 @@ export default {
     MINIMUS,
     PERSON,
     USER,
-    EMAIL
+    EMAIL,
+    VISIBILITY,
+    VISIBILITY_OFF
 };
