@@ -4,13 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Box } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { IconButton } from "@material-ui/core";
-// import Link from '@material-ui/core/Link';
 import clsx from 'clsx';
 import Layout from '../../../components/LayoutPreLogin';
 import ImageNotDraggable from '../../../components/ImageNotDraggable';
 import Text from '../../../components/Text/Text';
 import './styles.scss';
+import { FETCH } from '../../../API/fetch'
 
 const useStyles = makeStyles({
     root: {
@@ -60,15 +59,34 @@ export default function SpacingGrid() {
     // const [setSpacing] = React.useState(2);
     const [state, setState] = React.useState({
         checkedB: true,
+        username: '',
+        password: '',
+        temporalToken: ''
     });
 
-    const handleChange = name => event => {
-        setState({ ...state, [name]: event.target.checked });
-    };
+    const changeHandler = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        setState({ ...state, [name]: value})
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+
+        const authData = {
+            username: state.username,
+            password: state.password
+        }
+
+        FETCH('post', '', authData, 'http://localhost:3001/api/auth')
+        .then(res => {
+            setState({ ...state, temporalToken: res.data.token})
+        })
+        .catch(err => console.log(err))
+        
+    }
 
     const classes = useStyles();
-    const preventDefault = event => event.preventDefault();
-
     return (
         <Layout>
             <Grid
@@ -90,13 +108,10 @@ export default function SpacingGrid() {
                     </Text>
                 </Grid>
                 <Grid className="element" item>
-                    {/* <ImageNotDraggable className="logo" width={'30px'} cursor={'pointer'} image={'USER'}
-                        onClick={() => console.log('soy login..')}
-                    /> */}
-                    <input className="input" type="text" placeholder="Username"></input>
+                    <input className="input" type="text" name="username" placeholder="Username" onChange={changeHandler}></input>
                 </Grid>
                 <Grid className="element" item>
-                    <input className="input" type="text" placeholder="Password"></input>
+                    <input className="input" type="password" name="password" placeholder="Password" onChange={changeHandler}></input>
                 </Grid>
                 <Grid className="element spaceBetween">
                     <FormControlLabel
@@ -122,7 +137,7 @@ export default function SpacingGrid() {
                 </Grid>
                 <Grid className="element" item>
                     <Box my={3}>
-                        <Button size="large" className="button shadow" boxShadow={3}>
+                        <Button size="large" className="button shadow" boxShadow={3} onClick={submitHandler}>
                             <Text fontSize="1.2em">
                                 Login
                             </Text>
