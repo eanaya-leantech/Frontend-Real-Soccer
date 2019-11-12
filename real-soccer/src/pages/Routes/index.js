@@ -10,6 +10,8 @@ const NotFound = React.lazy(() => import('../Errors/NotFound'));
 const PermissionDenied = React.lazy(() => import('../Errors/PermissionDenied'));
 const ServerError = React.lazy(() => import('../Errors/ServerError'));
 const Register = React.lazy(() => import("../Register"));
+const ForgotPassword = React.lazy(() => import("../Auth/ForgotPassword"));
+const ResetPassword = React.lazy(() => import("../Auth/ResetPassword"));
 
 
 const Routes = () => (
@@ -25,6 +27,8 @@ const Routes = () => (
             <Route path={'/analytics'} component={NotFound}/>
             <Route path={'/register'} component={Register}/>
             <Route path={'/login'} component={login}/>
+            <Route path={'/forgotpassword'} component={ForgotPassword}/>
+            <Route path={'/resetpassword'} component={ResetPassword}/>
         </Suspense>
     </Switch>
 );

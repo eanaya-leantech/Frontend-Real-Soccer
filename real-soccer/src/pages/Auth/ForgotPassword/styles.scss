@@ -1,0 +1,81 @@
+$color-background-logo-button: #5F9F5A;  // green
+// $color-background-logo-button: #171C28; // dark blue 
+$color-background-logo-button-hover: #5ac552;
+$color-container: #282F42;
+$color-field: #171C28;
+
+.forgot-password-container {
+  height: 503px;
+  width: 503px !important;
+  background-color: $color-container;
+  border-radius: 3%;
+}
+
+.shadow {
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.12);
+}
+
+.element {
+  width: 60%;
+}
+
+// image container
+.card-math-img {
+  width: 100px;
+  height: 100px;
+  background: $color-background-logo-button;
+  border-radius: 50%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.button.MuiButtonBase-root {
+  background-color: $color-background-logo-button;
+  color: #fff;
+  width: 60%;
+  display: block;
+  margin: 0 auto;
+}
+
+.button.MuiButtonBase-root:hover{
+  background-color: $color-background-logo-button-hover;
+}
+
+input[placeholder] {
+  color: #CBC9C9;
+}
+
+.email-field {
+  background-color: $color-field;
+  border-radius: 5px;
+  height: 2.7em;
+}
+
+// image container
+.MuiGrid-root.card-math-img.image.element.MuiGrid-item {
+  margin-top: 3.2em;
+  margin-bottom: 1em;
+}
+
+// Grid items
+.MuiGrid-root.element.MuiGrid-item {
+  margin-top: 1em;
+}
+
+#email-field-edge{
+  margin-bottom: 1em;
+}
+
+#img-logo {
+  position: relative;
+  top: -1px;
+  left: 8px;
+}
+
+.warning-message {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 0.5em;
+}
