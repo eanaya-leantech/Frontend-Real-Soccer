@@ -3,6 +3,7 @@ import {Switch, Route} from "react-router-dom";
 
 import Loading from '../../components/Loading';
 import login from '../Auth/login';
+import PrivateRoute from './PrivateRoute';
 
 const Matches = React.lazy(() => import("../Matches"));
 const MyTeam = React.lazy(() => import("../MyTeam"));
@@ -15,22 +16,23 @@ const ResetPassword = React.lazy(() => import("../Auth/ResetPassword"));
 
 
 const Routes = () => (
-    <Switch>
-        <Suspense fallback={<Loading/>}>
-            <Route exact path={'/'} component={MyTeam}/>
-            <Route path={'/matches'} component={Matches}/>
-            <Route path={'/store'} component={NotFound}/>
-            <Route path={'/uniforms'} component={ServerError}/>
-            <Route path={'/trophy'} component={PermissionDenied}/>
-            <Route path={'/gym'} component={NotFound}/>
-            <Route path={'/friends'} component={NotFound}/>
-            <Route path={'/analytics'} component={NotFound}/>
+    <Suspense fallback={<Loading/>}>
+        <Switch>
             <Route path={'/register'} component={Register}/>
             <Route path={'/login'} component={login}/>
             <Route path={'/forgotpassword'} component={ForgotPassword}/>
             <Route path={'/resetpassword'} component={ResetPassword}/>
-        </Suspense>
-    </Switch>
+            <PrivateRoute exact path={'/'} component={MyTeam}/>
+            <PrivateRoute path={'/matches'} component={Matches}/>
+            <PrivateRoute path={'/store'} component={NotFound}/>
+            <PrivateRoute path={'/uniforms'} component={ServerError}/>
+            <PrivateRoute path={'/trophy'} component={PermissionDenied}/>
+            <PrivateRoute path={'/gym'} component={NotFound}/>
+            <PrivateRoute path={'/friends'} component={NotFound}/>
+            <PrivateRoute path={'/analytics'} component={NotFound}/>
+            <Route component={NotFound}/>
+        </Switch>
+    </Suspense>
 );
 
 export default Routes;
