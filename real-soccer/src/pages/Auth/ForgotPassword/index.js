@@ -63,10 +63,7 @@ class ForgotPassword extends Component {
     };
 
     render() {
-        const {
-            email, messageFromServer, showNullError, showError
-        } = this.state;
-
+        const { email, messageFromServer, showNullError, showError } = this.state;
         return (
             <Layout>
                 <Grid container
@@ -82,44 +79,37 @@ class ForgotPassword extends Component {
                         />
                     </Grid>
                     <Grid className="element" item>
-                        <Text component={'h1'} className={'title'} fontSize={'1.6em'} align={'center'}  >Reset your password</Text>
+                        <Text component={'h1'} className={'title'} fontSize={'1.6em'} align={'center'}  >Forgot Password</Text>
                     </Grid>
                     <Grid className="element" item>
-                        <Text component={'span'} fontSize={'0.8em'}>Enter your email address and we will send you a link to reset your password.</Text>
+                        <Text component={'span'} fontSize={'0.8em'}>Please enter your email address and we will send you a link to reset your password.</Text>
                     </Grid>
                     <Grid className="element" item>
-
-                    <form onSubmit={this.sendEmail}>
-                        <FormControl fullWidth id={'email-field-edge'} >
-                            <OutlinedInput className="email-field"
-                                id="email"
-                                onChange={this.handleChange('email')}
-                                startAdornment={<InputAdornment position="start"><ImageNotDraggable image={'EMAIL'} width={'1.4em'} /></InputAdornment>}
-                                placeholder="Enter your email address"
-                            />
-                        </FormControl>
-                        {showNullError && (
-                            <div className="warning-message" >
-                                <Text component={'span'} fontSize={'0.8em'} color={'red'}>The email address cannot be null</Text>
-                            </div>
-                        )}
-                        <Button size="large" className="button shadow" type="submit">                       
-                            Send reset email                        
-                        </Button>
-                    </form>                    
-                    {showError && (
-                        <div>
+                        <form onSubmit={this.sendEmail}>
+                            <FormControl fullWidth id={'input-field-edge'} >
+                                <OutlinedInput className="input-field"
+                                    id="email"
+                                    onChange={this.handleChange('email')}
+                                    startAdornment={<InputAdornment position="start"><ImageNotDraggable image={'EMAIL'} width={'1.4em'} /></InputAdornment>}
+                                    placeholder="Enter your email address"
+                                />
+                            </FormControl>
+                            {showNullError && (
+                                <Text component={'span'} fontSize={'0.8em'} color={'red'} className="warning-message">The email address cannot be null</Text>
+                            )}
+                            <Button size="large" className="button shadow" type="submit">                       
+                                Send reset email                        
+                            </Button>
+                        </form> 
+                        {showError && (
                             <Text component={'span'} fontSize={'0.8em'}>
                                 That email address isn&apos;t recognized. Please try again or
                                 register for a new account.
-                            </Text>                        
-                        </div>
-                    )}
-                    {messageFromServer === 'recovery email sent' && (
-                        <div>
+                            </Text>
+                        )}
+                        {messageFromServer === 'recovery email sent' && (
                             <Text component={'span'} fontSize={'0.8em'}>Password Reset Email Successfully Sent!</Text>
-                        </div>
-                    )}
+                        )}
                     </Grid>
                 </Grid>
             </Layout >

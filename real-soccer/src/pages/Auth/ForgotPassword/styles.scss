@@ -1,5 +1,4 @@
-$color-background-logo-button: #5F9F5A;  // green
-// $color-background-logo-button: #171C28; // dark blue 
+$color-background-logo-button: #5F9F5A;
 $color-background-logo-button-hover: #5ac552;
 $color-container: #282F42;
 $color-field: #171C28;
@@ -19,7 +18,7 @@ $color-field: #171C28;
   width: 60%;
 }
 
-// image container
+// Image container
 .card-math-img {
   width: 100px;
   height: 100px;
@@ -35,7 +34,7 @@ $color-field: #171C28;
   color: #fff;
   width: 60%;
   display: block;
-  margin: 0 auto;
+  margin-top: 1em;
 }
 
 .button.MuiButtonBase-root:hover{
@@ -46,13 +45,17 @@ input[placeholder] {
   color: #CBC9C9;
 }
 
-.email-field {
+::placeholder{
+  font-size: 1em;
+}
+
+.input-field {
   background-color: $color-field;
   border-radius: 5px;
   height: 2.7em;
 }
 
-// image container
+// Image container
 .MuiGrid-root.card-math-img.image.element.MuiGrid-item {
   margin-top: 3.2em;
   margin-bottom: 1em;
@@ -63,7 +66,7 @@ input[placeholder] {
   margin-top: 1em;
 }
 
-#email-field-edge{
+#input-field-edge{
   margin-bottom: 1em;
 }
 
@@ -77,5 +80,8 @@ input[placeholder] {
   display: flex;
   align-content: center;
   justify-content: center;
-  margin-bottom: 0.5em;
+}
+
+.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedStart.MuiOutlinedInput-inputAdornedStart{
+  height: 0.3em;
 }
