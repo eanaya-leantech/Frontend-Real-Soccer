@@ -1,29 +1,42 @@
-export const loadState = async (key = null) => {
+export const loadStorage = (key = null) => {
     try {
-        const serializedData = await localStorage.getItem(key || 'state');
+        const serializedData = localStorage.getItem(key || 'state');
         return (serializedData === null) ? undefined : JSON.parse(serializedData);
     } catch (error) {
-        return undefined;
+        throw new Error('');
     }
 };
-export const saveState = (state, key) => {
+export const saveStorage = (state, key = 'state') => {
     try {
         const serializedData = JSON.stringify(state);
         localStorage.setItem(key, serializedData)
     } catch (error) {
-        return undefined;
+        throw new Error('');
     }
 };
 
-export const persistor  = (store, key = null, whileList = [] ) => {
+export const persistStorage = (store, whiteList = [], key = 'persist') => {
     try {
-        const state = store.getState();
-        if(whileList.length){
-            console.log(state);
+
+        if (!store.getState()) {
+            return new Error('');
         }
-        // let serializedData = JSON.stringify(state);
-        // localStorage.setItem('state', serializedData)
+
+        let storage = null;
+        const _store = store.getState();
+
+        if (whiteList.length) {
+            whiteList.forEach(list => {
+                if (_store.hasOwnProperty(list)) {
+                    storage = {
+                        ...storage,
+                        [list]: _store[list]
+                    }
+                }
+            });
+        }
+        localStorage.setItem(key, JSON.stringify(storage || _store));
     } catch (error) {
-        return undefined;
+        throw new Error('');
     }
 };
