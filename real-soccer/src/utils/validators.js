@@ -1,14 +1,21 @@
+/**
+ * Verifies if the string is in a valid email format.
+ * If it is a valid email, returns an object: {isValid=true, message: 'Successfull validation!'}
+ * If it is not valid email, returns an object: {isValid=false, message: 'An message about the invalid email'}
+ * @returns {object}
+ * @param {string} email 
+ */
 export function emailValidator(email) {
-    let isValid = true;
-    let reFirstPart = /^[a-zA-Z0-9]{2,}(((\-|\_|\.)(?=[a-zA-Z0-9]+))[a-zA-Z0-9]+)*/; // To evaluate since begining until before of the '@'
-    let reSecondPart = /([a-zA-Z0-9]{2,}(((\-|\_)(?=[a-zA-Z0-9]+))[a-zA-Z0-9]+)*)(\.[a-z]{2,3}){1,3}$/; // To evaluate since after the @ until the end of email
+    let isValid = false;
+    let reFirstPart = /^[a-zA-Z0-9]{2,33}(((\-|\_|\.)(?=[a-zA-Z0-9]+))[a-zA-Z0-9]+)*/; // To evaluate since begining until before of the '@'
+    let reSecondPart = /([a-zA-Z0-9]{2,33}(((\-|\_)(?=[a-zA-Z0-9]+))[a-zA-Z0-9]+)*)(\.[a-z]{2,3}){1,3}$/; // To evaluate since after the @ until the end of email
     let reEmail = new RegExp(reFirstPart.source + '@' + reSecondPart.source); // All regEx of the email
     let message = 'Watch out! Your input should seems like `example@email.com`. ';
-    let emailSplited = email.split('@'); // Getting first and second part of the email
-
-    if (emailSplited[1] == undefined) { // Validation: Email must have an @
-        isValid = false;
-        message += 'Your email does not have an arroba. ';
+    let emailSplited
+    try {
+        emailSplited = email.split('@'); // Getting first and second part of the email        
+    } catch (error) {
+        return {isValid, message}
     }
     if (emailSplited[0] == emailSplited[1]) { // Validation: First and second part must be different
         isValid = false;
@@ -20,22 +27,28 @@ export function emailValidator(email) {
         message += 'Your username must have at least one letter.';    
     }
     if (reEmail.test(email) && isValid) { // Validation: Everthing else
-        return true;
-    } else {
-        return {isValid, message};        
+        isValid = true;
+        message = 'Successfull validation!';
     }
+    return {isValid, message};        
 }
 
-export function basicPassword(pass) {
+/**
+ * Verifies if the string have at least n (defoult: 4) characters or more. 
+ * If it is a valid pass, returns an object: {isValid=true, message: 'Successfull validation!'}
+ * If it is not valid pass, returns an object: {isValid=false, message: 'Password must contain almost 4 characters'}
+ * @returns {object}
+ * @param {string} pass 
+ */
+export function basicPassword(pass=null, numCharacters=4) {
     let isValid = false;
-    let regPass = /\w{4,}/;
-    isValid = regPass.test(pass);
-    let message = 'Password must contain alost 4 characters';
-    if (isValid) {
-        return true;
-    } else {
-        return {isValid, message}
+    let message = 'Password must contain almost 4 characters';
+    if(!pass.length) return {isValid, message}; // In case pass is null
+    if (pass.length >= numCharacters) {
+        message = 'Successfull validation!';
+        isValid = true;
     }
+    return {isValid, message};
 }
 
 export function hardPassword(pass) {
