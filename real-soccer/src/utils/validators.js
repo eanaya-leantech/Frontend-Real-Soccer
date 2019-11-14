@@ -1,16 +1,25 @@
 export function emailValidator(email) {
-    let isValid = false;
-    let regEmail = /^[a-zA-Z0-9]+(((\-|\_)(?=[a-zA-Z0-9]+))[a-zA-Z0-9]+)*@([a-zA-Z0-9]{2,}(((\-|\_)(?=[a-zA-Z0-9]+))[a-zA-Z0-9]+)*)(\.[a-z]{2,3}){1,3}$/;
+    let isValid = true;
+    let reFirstPart = /^[a-zA-Z0-9]{2,}(((\-|\_|\.)(?=[a-zA-Z0-9]+))[a-zA-Z0-9]+)*/; // To evaluate since begining until before of the '@'
+    let reSecondPart = /([a-zA-Z0-9]{2,}(((\-|\_)(?=[a-zA-Z0-9]+))[a-zA-Z0-9]+)*)(\.[a-z]{2,3}){1,3}$/; // To evaluate since after the @ until the end of email
+    let reEmail = new RegExp(reFirstPart.source + '@' + reSecondPart.source); // All regEx of the email
+    let message = 'Watch out! Your input should seems like `example@email.com`. ';
+    let emailSplited = email.split('@'); // Getting first and second part of the email
 
-    if (regEmail.test(email)) { // A letter validaor
-        let firstPart = email.split('@');
-        let reOneLetter = /[a-z]/ig;
-        isValid = reOneLetter.test(firstPart[0]);
-    } else {
+    if (emailSplited[1] == undefined) { // Validation: Email must have an @
         isValid = false;
+        message += 'Your email does not have an arroba. ';
     }
-    let message = 'This email is invalid. Your input should seems like `example@email.com` ';
-    if (isValid) {
+    if (emailSplited[0] == emailSplited[1]) { // Validation: First and second part must be different
+        isValid = false;
+        message += 'This email is not allowed. ';
+    }
+    let reOneLetter = /[a-z]/ig; // Validation: The username (username@example.com) must have at least a letter
+    if (reOneLetter.test(emailSplited[0]) == false) {
+        isValid = false;
+        message += 'Your username must have at least one letter.';    
+    }
+    if (reEmail.test(email) && isValid) { // Validation: Everthing else
         return true;
     } else {
         return {isValid, message};        
