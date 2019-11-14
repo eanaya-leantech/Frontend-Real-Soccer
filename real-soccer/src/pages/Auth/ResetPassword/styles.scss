@@ -1,3 +1,7 @@
+/**
+ * ResetPassword Style
+ */
+
 $color-background-logo-button: #5F9F5A;
 $color-background-logo-button-hover: #5ac552;
 $color-container: #282F42;
@@ -71,6 +75,7 @@ $color-field: #171C28;
 // Pin container
 .pincode-input-container {
   display: flex;
+  margin: 10px;
 }
 
 // Pin input text field
@@ -87,4 +92,9 @@ $color-field: #171C28;
 // Image visibily and visibility-off
 .MuiInputAdornment-root.MuiInputAdornment-positionStart {
   font-size: 0.9em;
+}
+
+// Pin asterisks size is increased
+input[type="password"] {
+  font-size: 2em;
 }

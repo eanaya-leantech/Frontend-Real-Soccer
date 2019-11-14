@@ -1,3 +1,7 @@
+/**
+ * ForgotPassword Style
+ */
+
 $color-background-logo-button: #5F9F5A;
 $color-background-logo-button-hover: #5ac552;
 $color-container: #282F42;
@@ -14,10 +18,6 @@ $color-field: #171C28;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.12);
 }
 
-.element {
-  width: 60%;
-}
-
 // Image container
 .card-math-img {
   width: 100px;
@@ -29,6 +29,11 @@ $color-field: #171C28;
   justify-content: center;
 }
 
+// Email field
+.MuiOutlinedInput-adornedStart {
+  margin-bottom: 1em;
+}
+// Button
 .button.MuiButtonBase-root {
   background-color: $color-background-logo-button;
   color: #fff;
@@ -45,6 +50,7 @@ input[placeholder] {
   color: #CBC9C9;
 }
 
+// To reduce the placeholder size
 ::placeholder{
   font-size: 1em;
 }
@@ -66,10 +72,6 @@ input[placeholder] {
   margin-top: 1em;
 }
 
-#input-field-edge{
-  margin-bottom: 1em;
-}
-
 #img-logo {
   position: relative;
   top: -1px;
@@ -80,8 +82,4 @@ input[placeholder] {
   display: flex;
   align-content: center;
   justify-content: center;
-}
-
-.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedStart.MuiOutlinedInput-inputAdornedStart{
-  height: 0.3em;
 }
