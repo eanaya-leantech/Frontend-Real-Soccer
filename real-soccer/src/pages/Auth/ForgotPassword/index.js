@@ -3,6 +3,7 @@ import { Grid, Button, InputAdornment, OutlinedInput } from '@material-ui/core';
 import ImageNotDraggable from '../../../components/ImageNotDraggable'; // To use LOGO and EMAIL SVG images
 import Text from '../../../components/Text/Text'; // To use Text Component
 import Layout from '../../../components/LayoutPreLogin';  // To use the same login container background
+import { emailValidator } from '../../../utils/validators';  // To use email validator 
 import axios from 'axios'; // Library to make AJAX calls to the server
 import './styles.scss';
 
@@ -19,7 +20,8 @@ class ForgotPassword extends Component {
             email: '',                // Email address
             userDoesNotExist: false,  // Error message when the user does not exist in the system
             recoveryEmailSent: false, // Successfull message when a email is sent to the user to reset the password
-            showNullError: false,     // Error message when the email address is not entered in the email field
+            mailNotEntered: false,    // Error message when the email address is not entered in the email field
+            invalidEmail: false,      // Error message when the email is invalid
         };
     }
 
@@ -42,17 +44,28 @@ class ForgotPassword extends Component {
      * from backend about the existence of email address
      * and sending the password reset link
      */
-    sendEmail = async (e) => {
-        e.preventDefault();
-        const { email } = this.state;
+    sendEmail = async (e) => {        
+        e.preventDefault();        
+        const { email } = this.state;        
         // Check if the email address was not entered to show the user a error message
         if (email === '') {
             this.setState({
                 userDoesNotExist: false,
                 recoveryEmailSent: false,
-                showNullError: true, // Error message is enabled
+                mailNotEntered: true, // Error message is enabled
+                invalidEmail: false,
             });
-        } else {
+        } // Check if the email address is invalid to show the user a error message
+        else if(emailValidator(email) !== true){  // Is necessary to use explicitly the operator !== because the answer can be a string and a not null string is truthy
+            this.setState({
+                userDoesNotExist: false,
+                recoveryEmailSent: false,
+                mailNotEntered: false,
+                invalidEmail: true, // Error message is enabled
+            });
+            console.log('No Valido: ', emailValidator(email).isValid, emailValidator(email).message);
+        } // If the email address was entered and valid then a request is made to the server
+        else {
             try {
                 const response = await axios.post(
                     'http://localhost:3000/forgotPassword',
@@ -66,17 +79,19 @@ class ForgotPassword extends Component {
                     this.setState({
                         userDoesNotExist: false,
                         recoveryEmailSent: true, // Successful message is enabled
-                        showNullError: false,
+                        mailNotEntered: false,
+                        invalidEmail: false,
                     });
                 }
             } catch (error) {
-                //console.error(error.response.data);
+                console.error(error.response.data);
                 // Check if a non-existent email address response was received from the server to show the user a error message
                 if (error.response.data === 'email not in db') {
                     this.setState({
                         userDoesNotExist: true, // Error message is enabled
                         recoveryEmailSent: false,
-                        showNullError: false,
+                        mailNotEntered: false,
+                        invalidEmail: false,
                     });
                 }
             }
@@ -84,7 +99,7 @@ class ForgotPassword extends Component {
     };
 
     render() {
-        const { recoveryEmailSent, showNullError, userDoesNotExist } = this.state;
+        const { email, recoveryEmailSent, mailNotEntered, userDoesNotExist, invalidEmail } = this.state;
         return (
             <Layout>
                 <Grid container
@@ -118,25 +133,24 @@ class ForgotPassword extends Component {
                                 onChange={this.handleChange('email')}                                
                                 startAdornment={<InputAdornment position="start"><ImageNotDraggable image={'EMAIL'} width={'1.4em'} /></InputAdornment>} // It incorporates the image at the beginning of the field
                                 placeholder="Enter your email address"
-                            />
-                            {/* Show error message when the email address is not entered in the email field */}                            
-                            {showNullError && (
-                                <Text component={'span'} fontSize={'0.8em'} color={'red'} className="warning-message">The email address cannot be null</Text>
-                            )}
+                            />                                                     
                             <Button size="large" className="button shadow" type="submit">                       
                                 Send reset email                        
                             </Button>
                         </form>
-                        {/* Show error message when the email address doesn't exist in the system */}  
-                        {userDoesNotExist && (
-                            <Text component={'span'} fontSize={'0.8em'}>
-                                That email address is not recognized. Please try again or register for a new account.
-                            </Text>
-                        )}
                         {/* Show a successful message when the email has been sent */}
                         {recoveryEmailSent && (
-                            <Text component={'span'} fontSize={'0.8em'}>Password Reset Email Successfully Sent!</Text>
+                            <Text component={'span'} fontSize={'0.8em'} color={'blue'} className="message">Password Reset Email Successfully Sent!</Text>
                         )}
+                         {/* show messages in the view*/}
+                         <Text component={'span'} fontSize={'0.8em'} color={'red'} className="message">
+                            {/* Show error message when the email address is not entered in the email field */}
+                            {mailNotEntered && ('The email address cannot be null')}
+                            {/* Show error message when the email address doesn't exist in the system */}   
+                            {userDoesNotExist && ('That email address is not recognized. Please try again or register for a new account')}
+                            {/* Show error message when the email is invalid */}   
+                            {invalidEmail && ('The email address is invalid. It should seems like example@email.com')}
+                        </Text>  
                     </Grid>
                 </Grid>
             </Layout >
