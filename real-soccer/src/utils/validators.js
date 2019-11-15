@@ -1,9 +1,7 @@
 /**
  * Verifies if the string is in a valid email format.
- * If it is a valid email, returns an object: {isValid=true, message: 'Successfull validation!'}
- * If it is not valid email, returns an object: {isValid=false, message: 'An message about the invalid email'}
- * @returns {object}
  * @param {string} email 
+ * @returns {object} {isValid=true, message: 'Successfull validation!'}
  */
 export function emailValidator(email) {
     let isValid = false;
@@ -35,10 +33,9 @@ export function emailValidator(email) {
 
 /**
  * Verifies if the string have at least n (defoult: 4) characters or more. 
- * If it is a valid pass, returns an object: {isValid=true, message: 'Successfull validation!'}
- * If it is not valid pass, returns an object: {isValid=false, message: 'Password must contain almost 4 characters'}
- * @returns {object}
- * @param {string} pass 
+ * @param {string} pass
+ * @param {int} numCharacters
+ * @returns {object} {isValid=false, message: 'Password must contain almost 4 characters'}
  */
 export function basicPassword(pass=null, numCharacters=4) {
     let isValid = false;
