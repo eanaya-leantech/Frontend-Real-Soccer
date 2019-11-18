@@ -1,5 +1,6 @@
 import {FETCH} from "../fetch";
 import {authRoutes} from "../routes/auth";
+import {loadStorage} from "../../tools/storage";
 
 export class Auth {
     async auth(payload) {
@@ -30,5 +31,9 @@ export class Auth {
         } catch (error) {
             return error;
         }
+    }
+
+    isAuthenticated() {
+        return loadStorage('token');
     }
 }

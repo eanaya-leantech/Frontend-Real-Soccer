@@ -6,8 +6,8 @@ export default ({component: Component, ...rest}) => {
     return <Route {...rest}
                   render={props =>
                       (API.authService.isAuthenticated()
-                              ? <Component {...props}/>
-                              : <Redirect to={'/login'}/>
+                              ? <Redirect to={'/'}/>
+                              : <Component {...props}/>
                       )
                   }/>
 };

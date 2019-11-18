@@ -4,6 +4,7 @@ import {Switch, Route} from "react-router-dom";
 import Loading from '../../components/Loading';
 import login from '../Auth/login';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 const Matches = React.lazy(() => import("../Matches"));
 const MyTeam = React.lazy(() => import("../MyTeam"));
@@ -18,10 +19,10 @@ const ResetPassword = React.lazy(() => import("../Auth/ResetPassword"));
 const Routes = () => (
     <Suspense fallback={<Loading/>}>
         <Switch>
-            <Route path={'/register'} component={Register}/>
-            <Route path={'/login'} component={login}/>
-            <Route path={'/forgotpassword'} component={ForgotPassword}/>
-            <Route path={'/resetpassword'} component={ResetPassword}/>
+            <PublicRoute path={'/register'} component={Register}/>
+            <PublicRoute path={'/login'} component={login}/>
+            <PublicRoute path={'/forgotpassword'} component={ForgotPassword}/>
+            <PublicRoute path={'/resetpassword'} component={ResetPassword}/>
             <PrivateRoute exact path={'/'} component={MyTeam}/>
             <PrivateRoute path={'/matches'} component={Matches}/>
             <PrivateRoute path={'/store'} component={NotFound}/>
