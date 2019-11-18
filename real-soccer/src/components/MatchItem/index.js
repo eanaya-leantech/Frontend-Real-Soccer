@@ -1,6 +1,5 @@
 import React from 'react';
 import {Box} from "@material-ui/core";
-import PropTypes from 'prop-types';
 import ImageNotDraggable from "../ImageNotDraggable";
 import Text from "../Text/Text";
 import './styles.scss';

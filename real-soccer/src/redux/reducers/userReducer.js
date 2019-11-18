@@ -1,10 +1,12 @@
 const initialState = {};
 export const user = (state = initialState, action) => {
     switch (action.type) {
-        case '':
+        case 'SAVE':
             return {
-                ...state
+                ...state,  user: action.user
             };
+        case 'UPDATE':
+            return {...state, user: 'nick'} 
         default:
             return state;
     }

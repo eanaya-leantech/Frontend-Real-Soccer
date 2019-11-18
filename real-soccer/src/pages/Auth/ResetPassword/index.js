@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Grid, Button, FormControl, InputAdornment, OutlinedInput } from '@material-ui/core';
 import ImageNotDraggable from '../../../components/ImageNotDraggable';
 import Text from '../../../components/Text/Text';
@@ -7,7 +7,6 @@ import Layout from '../../../components/LayoutPreLogin';
 //import Visibility from '@material-ui/icons/Visibility';
 //import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
-import axios from 'axios';
 
 export default function ForgotPassword(){
  

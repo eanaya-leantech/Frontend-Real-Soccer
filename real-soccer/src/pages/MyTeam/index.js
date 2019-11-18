@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Box} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import Layout from "../../components/Layout";
 import AddTrophy from "../../components/AddTrophy";
 import FormTeam from "../../components/FormTeam";
