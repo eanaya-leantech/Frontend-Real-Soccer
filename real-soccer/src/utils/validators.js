@@ -54,6 +54,7 @@ export function basicPassword(pass=null, numCharacters=4) {
  * 2. a number character
  * 3. at least 8 characteres of length
  * @param {string} pass password to validate
+ * @returns {object} {isValid=true, message: 'Successfull validation!'}
  */
 export function hardPassword(pass=null) {
     let isValid = false;
@@ -79,6 +80,7 @@ export function hardPassword(pass=null) {
  * @param {string} number This is the number to evaluate
  * @param {number} minSize minimal length allowed
  * @param {number} maxSize Maximal length allowed
+ * @returns {object} {isValid=true, message: 'Successfull validation!'}
  */
 export function onlyNumbers(number=null, minSize=8, maxSize=minSize+8) {
     let isValid = false;
