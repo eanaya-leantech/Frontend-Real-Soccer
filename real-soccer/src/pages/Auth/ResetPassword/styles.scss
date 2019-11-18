@@ -58,13 +58,6 @@ $color-field: #171C28;
   left: 8px;
 }
 
-.warning-message {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  margin-bottom: 0.5em;
-}
-
 // Pin section
 .MuiGrid-root.element.pin-section.MuiGrid-item {
   display: flex;
@@ -97,4 +90,11 @@ $color-field: #171C28;
 // Pin asterisks size is increased
 input[type="password"] {
   font-size: 2em;
+}
+
+.message {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-top: 1em !important;
 }

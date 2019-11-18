@@ -24,7 +24,7 @@ export function emailValidator(email) {
         isValid = false;
         message += 'Your username must have at least one letter.';    
     }
-    if (reEmail.test(email) && isValid) { // Validation: Everthing else
+    if (reEmail.test(email)) { // Validation: Everthing else
         isValid = true;
         message = 'Successfull validation!';
     }
