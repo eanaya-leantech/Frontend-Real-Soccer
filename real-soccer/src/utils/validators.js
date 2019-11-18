@@ -40,7 +40,7 @@ export function emailValidator(email) {
 export function basicPassword(pass=null, numCharacters=4) {
     let isValid = false;
     let message = 'Password must contain almost 4 characters';
-    if(!pass.length) return {isValid, message}; // In case pass is null
+    if(!pass) return {isValid, message}; // In case pass is null
     if (pass.length >= numCharacters) {
         message = 'Successfull validation!';
         isValid = true;
@@ -48,27 +48,52 @@ export function basicPassword(pass=null, numCharacters=4) {
     return {isValid, message};
 }
 
-export function hardPassword(pass) {
+/**
+ * Verifies if the string have:
+ * 1. a Mayus letter
+ * 2. a number character
+ * 3. at least 8 characteres of length
+ * @param {string} pass password to validate
+ */
+export function hardPassword(pass=null) {
     let isValid = false;
-    let regOneMayus = /[A-Z]/;
-    let message = regOneMayus.test(pass) ? '' : 'Password must have at least a Mayus letter.';
-    let regOneNumber = /[1-9]/;
-    message = regOneNumber.test(pass) ? message : `${message} Password must have at least a number.`;
-    message = pass.size >= 7 ? message : `${message} Password must have at 8 characters.`;
-    if (regOneMayus.test(pass) && regOneNumber.test(pass) && (pass.size >= 8)) {
-        return true;
-    } else {
-        return {isValid, message};
+    let message = 'Invalid password!';
+    if (!pass) {
+        return {isValid, message}
     }
+    isValid = false;
+    let regOneMayus = /[A-Z]/;
+    message = regOneMayus.test(pass) ? '' : 'Password must have at least a Mayus letter.'; // 1.
+    let regOneNumber = /[1-9]/;
+    message = regOneNumber.test(pass) ? message : `${message} Password must have at least a number.`; // 2.
+    message = pass.length >= 7 ? message : `${message} Password must have at 8 characters.`; //3.
+    if (regOneMayus.test(pass) && regOneNumber.test(pass) && (pass.length >= 8)) { // Validation: 1,2,3
+        isValid = true;
+        message = 'Successfull validation!';
+    }
+    return {isValid, message};
 }
 
-export function onlyNumbers(number, size=8) {
+/**
+ * Verifies if there are only numbers. Example: phone number
+ * @param {string} number This is the number to evaluate
+ * @param {number} minSize minimal length allowed
+ * @param {number} maxSize Maximal length allowed
+ */
+export function onlyNumbers(number=null, minSize=8, maxSize=minSize+8) {
     let isValid = false;
-    let regOnlyNumbers = /^[1-9]{8,20}$/;
-    let message = regOnlyNumbers.test(number) ? '' : 'This input accept only from 8 to 20 numbers. Letters or special characters are not allowed.';
-    if (regOnlyNumbers.test(number)) {
-        return true;
-    } else {
-        return {isValid, message};
+    if(!number) return {isValid: false, message: 'Please enter a number'}
+    number = number.toString();
+    let regOnlyNumbers = /^[0-9]+$/;
+    let message = regOnlyNumbers.test(number) ? '' : 'Letters or special characters are not allowed.';
+    message = number.length < minSize ? `${message} This number must have at least ${minSize} characters.` : message;
+    message = number.length > maxSize ? `${message} It must have less than ${maxSize} numbers.` : message;
+    if (regOnlyNumbers.test(number) 
+        && number.length >= minSize
+        && number.length <= maxSize) 
+    {
+        isValid = true;
+        message = 'Successfull validation!';
     }
+    return {isValid, message};
 }
