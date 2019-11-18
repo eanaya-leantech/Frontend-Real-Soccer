@@ -1,9 +1,9 @@
 import axios from 'axios';
-import {loadStorage} from "../tools/storage";
+import API from './index'
 
 export const FETCH = async (method, endpoint, payload = {}, url = null) => {
 
-    const Authorization = await loadStorage('token');
+    const Authorization = await API.authService.isAuthenticated();
     const URL = url || `${process.env.REACT_APP_BASE_URL}${endpoint}`;
 
     const instance = axios.create({

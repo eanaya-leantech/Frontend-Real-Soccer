@@ -1,12 +1,12 @@
-export const loadStorage = (key = null) => {
+export const loadStorage = (key = 'real-app') => {
     try {
-        const serializedData = localStorage.getItem(key || 'state');
+        const serializedData = localStorage.getItem(key);
         return (serializedData === null) ? undefined : JSON.parse(serializedData);
     } catch (error) {
         throw new Error('');
     }
 };
-export const saveStorage = (state, key = 'state') => {
+export const saveStorage = (state, key = 'real-app') => {
     try {
         const serializedData = JSON.stringify(state);
         localStorage.setItem(key, serializedData)
@@ -15,7 +15,7 @@ export const saveStorage = (state, key = 'state') => {
     }
 };
 
-export const persistStorage = (store, whiteList = [], key = 'persist') => {
+export const persistStorage = (store, whiteList = [], key = 'app-persist') => {
     try {
 
         if (!store.getState()) {

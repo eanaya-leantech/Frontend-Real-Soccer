@@ -4,7 +4,7 @@ import ImageNotDraggable from '../../../components/ImageNotDraggable'; // To use
 import Text from '../../../components/Text/Text'; // To use Text Component
 import Layout from '../../../components/LayoutPreLogin';  // To use the same login container background
 import { emailValidator } from '../../../utils/validators';  // To use email validator 
-import axios from 'axios'; // Library to make AJAX calls to the server
+// import axios from 'axios'; // Library to make AJAX calls to the server
 import './styles.scss';
 
 /**
