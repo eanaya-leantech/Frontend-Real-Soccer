@@ -3,6 +3,8 @@ import {Switch, Route} from "react-router-dom";
 
 import Loading from '../../components/Loading';
 import login from '../Auth/login';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 const Matches = React.lazy(() => import("../Matches"));
 const MyTeam = React.lazy(() => import("../MyTeam"));
@@ -10,23 +12,28 @@ const NotFound = React.lazy(() => import('../Errors/NotFound'));
 const PermissionDenied = React.lazy(() => import('../Errors/PermissionDenied'));
 const ServerError = React.lazy(() => import('../Errors/ServerError'));
 const Register = React.lazy(() => import("../Register"));
+const ForgotPassword = React.lazy(() => import("../Auth/ForgotPassword"));
+const ResetPassword = React.lazy(() => import("../Auth/ResetPassword"));
 
 
 const Routes = () => (
-    <Switch>
-        <Suspense fallback={<Loading/>}>
-            <Route exact path={'/'} component={MyTeam}/>
-            <Route path={'/matches'} component={Matches}/>
-            <Route path={'/store'} component={NotFound}/>
-            <Route path={'/uniforms'} component={ServerError}/>
-            <Route path={'/trophy'} component={PermissionDenied}/>
-            <Route path={'/gym'} component={NotFound}/>
-            <Route path={'/friends'} component={NotFound}/>
-            <Route path={'/analytics'} component={NotFound}/>
-            <Route path={'/register'} component={Register}/>
-            <Route path={'/login'} component={login}/>
-        </Suspense>
-    </Switch>
+    <Suspense fallback={<Loading/>}>
+        <Switch>
+            <PublicRoute path={'/register'} component={Register}/>
+            <PublicRoute path={'/login'} component={login}/>
+            <PublicRoute path={'/forgotpassword'} component={ForgotPassword}/>
+            <PublicRoute path={'/resetpassword'} component={ResetPassword}/>
+            <PrivateRoute exact path={'/'} component={MyTeam}/>
+            <PrivateRoute path={'/matches'} component={Matches}/>
+            <PrivateRoute path={'/store'} component={NotFound}/>
+            <PrivateRoute path={'/uniforms'} component={ServerError}/>
+            <PrivateRoute path={'/trophy'} component={PermissionDenied}/>
+            <PrivateRoute path={'/gym'} component={NotFound}/>
+            <PrivateRoute path={'/friends'} component={NotFound}/>
+            <PrivateRoute path={'/analytics'} component={NotFound}/>
+            <Route component={NotFound}/>
+        </Switch>
+    </Suspense>
 );
 
 export default Routes;

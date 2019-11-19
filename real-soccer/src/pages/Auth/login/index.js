@@ -4,13 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Box } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { IconButton } from "@material-ui/core";
 // import Link from '@material-ui/core/Link';
 import clsx from 'clsx';
 import Layout from '../../../components/LayoutPreLogin';
 import ImageNotDraggable from '../../../components/ImageNotDraggable';
 import Text from '../../../components/Text/Text';
 import './styles.scss';
+import {connect} from 'react-redux'
 
 const useStyles = makeStyles({
     root: {
@@ -56,19 +56,20 @@ const useStyles = makeStyles({
     },
 });
 
-export default function SpacingGrid() {
+
+
+function SpacingGrid(props) {
     // const [setSpacing] = React.useState(2);
     const [state, setState] = React.useState({
         checkedB: true,
     });
-
+    props.dispatch({type: 'SAVE_DATA'})
     const handleChange = name => event => {
         setState({ ...state, [name]: event.target.checked });
     };
-
+    
     const classes = useStyles();
     const preventDefault = event => event.preventDefault();
-
     return (
         <Layout>
             <Grid
@@ -79,14 +80,15 @@ export default function SpacingGrid() {
                 className={`loginForm shadow`}>
                 <Grid item>
                     <ImageNotDraggable
+                        width= '116px'
                         image={'PERSON'}
                         className={'card-math-img image'} />
                 </Grid>
-                <Grid className="element" textAlign="center" item>
-                    <Text>
-                        <Box textAlign="center" my={2}>
-                            <h1>Real Soccer</h1>
-                        </Box>
+                <Grid className="element"  item>
+                    <Text fontSize='1.8em' textAlign='center' component='h1'>
+                        
+                            Real Soccer
+                       
                     </Text>
                 </Grid>
                 <Grid className="element" item>
@@ -114,16 +116,16 @@ export default function SpacingGrid() {
                         className="remember"
                         label="Remember me"
                     />
-                    <Link>
-                        <Text fontSize=".7em" className="forgot" color="#707070">
+                    <Link to={'/forgotpassword'}>
+                        <Text fontSize=".7em" className="forgot" color="#707070" component='h3' textAlign='rigth'>
                             Forgot Password?
                         </Text>
                     </Link>
                 </Grid>
                 <Grid className="element" item>
                     <Box my={3}>
-                        <Button size="large" className="button shadow" boxShadow={3}>
-                            <Text fontSize="1.2em">
+                        <Button size="large" className="button shadow" >
+                            <Text fontSize="1.2em" textAlign='center' component='h2'>
                                 Login
                             </Text>
                         </Button>
@@ -133,3 +135,9 @@ export default function SpacingGrid() {
         </Layout>
     );
 }
+
+const mapStateToProps=( state ) => {
+    return state
+}
+
+export default connect(/* mapStateToProps */)(SpacingGrid)

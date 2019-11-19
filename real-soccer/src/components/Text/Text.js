@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Typography} from "@material-ui/core";
 
-const Text = ({children, fontSize = '1em', color = 'white', fontWeight = 'normal', component, ...props}) => (
+const Text = ({children, fontSize = '1em', color = 'white', fontWeight = 'normal', textAlign='left', component, ...props}) => (
     <Typography
         component={component}
         {...props}
@@ -10,6 +10,7 @@ const Text = ({children, fontSize = '1em', color = 'white', fontWeight = 'normal
             fontSize,
             color,
             fontWeight,
+            textAlign,
         }}
     >
         {children}
