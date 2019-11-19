@@ -20,7 +20,8 @@
         }
       
         & .info {
-          width: calc(100% - 200px);
+          width: 100%;
+          text-align: center;
         }
     
         & .btn {
@@ -65,7 +66,6 @@
             & .btn {
                 width: 150px;
                 height: 35px;
-                border-radius: 10px;
                 background-color: #9F4958;
                 color: white;
                 cursor: pointer;

@@ -48,7 +48,7 @@ export function onlyNumbers(number, size=8) {
     let regOnlyNumbers = /^[1-9]{8,20}$/;
     let message = regOnlyNumbers.test(number) ? '' : 'This input accept only from 8 to 20 numbers. Letters or special characters are not allowed.';
     if (regOnlyNumbers.test(number)) {
-        return true;
+        return { isValid: true, message: null };
     } else {
         return {isValid, message};
     }
