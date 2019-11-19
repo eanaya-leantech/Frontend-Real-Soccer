@@ -1,5 +1,5 @@
 export const authRoutes = {
     auth: '/auth',
-    register: '/register',
-    forgotPassword: 'forgotPassword'
+    register: '/auth/register',
+    forgotPassword: '/auth/forgotPassword'
 };

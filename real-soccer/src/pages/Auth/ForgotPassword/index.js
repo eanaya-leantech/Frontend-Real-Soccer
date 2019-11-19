@@ -4,7 +4,7 @@ import ImageNotDraggable from '../../../components/ImageNotDraggable'; // To use
 import Text from '../../../components/Text/Text'; // To use Text Component
 import Layout from '../../../components/LayoutPreLogin';  // To use the same login container background
 import { emailValidator } from '../../../utils/validators';  // To use email validator 
-// import axios from 'axios'; // Library to make AJAX calls to the server
+import API from '../../../API/index'; //To make calls to the server
 import './styles.scss';
 
 /**
@@ -64,6 +64,24 @@ class ForgotPassword extends Component {
         } // If the email address was entered and valid then a request is made to the server
         else {
             // Make code here
+            try {
+                const response = await API.authService.forgotPassword(email);
+                // Check if a successful response was received from the server to show the user a successful message 
+                //console.log("Response: ",response.data.msg);
+                if (response.status === 200) {
+                    this.setState({
+                        recoveryEmailSent: true, // Successful message is enabled
+                    });
+                }
+            } catch (error) {
+                //console.error(error.response.data);
+                // Check if a non-existent email address response was received from the server to show the user a error message
+                /*if (error.response.data === 'email not in db') {
+                    this.setState({
+                        userDoesNotExist: true, // Error message is enabled
+                    });
+                }*/
+            }
         }
     };
 
@@ -110,7 +128,7 @@ class ForgotPassword extends Component {
                         </form>
                         {/* Show a successful message when the email has been sent */}
                         {recoveryEmailSent && (
-                            <Text component={'span'} fontSize={'0.8em'} color={'blue'} className="message">Password Reset Email Successfully Sent!</Text>
+                            <Text component={'span'} fontSize={'0.8em'} color={'#15a20b'} className="message">Password reset email successfully sent to {email}</Text>
                         )}
                          {/* show messages in the view */}
                          <Text component={'span'} fontSize={'0.8em'} color={'red'} className="message">
