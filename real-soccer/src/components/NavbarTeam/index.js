@@ -5,16 +5,16 @@ import './styles.scss';
 
 const NavbarTeam = () => (
     <nav className='navbar'>
-        <Button className='navbar-action' onClick={() => alert('...')}>
+        <Button className='navbar-action'>
             <ImageNotDraggable width={'20px'} image={'CALENDAR'}/>
         </Button>
-        <Button className='navbar-action' onClick={() => alert('...')}>
+        <Button className='navbar-action'>
             <ImageNotDraggable width={'20px'} image={'CLIPBOARD'}/>
         </Button>
-        <Button className='navbar-action' onClick={() => alert('...')}>
+        <Button className='navbar-action'>
             <ImageNotDraggable width={'20px'} image={'LIST_OL'}/>
         </Button>
-        <Button className='navbar-action' onClick={() => alert('...')}>
+        <Button className='navbar-action'>
             <ImageNotDraggable width={'20px'} image={'ENVELOPE'}/>
         </Button>
     </nav>

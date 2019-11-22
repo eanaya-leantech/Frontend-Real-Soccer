@@ -10,6 +10,7 @@ $totalHeight: calc(#{$menu-height} + #{$footer-height});
   width: 100%;
   height: 100vh;
   position: relative;
+  overflow-x: hidden;
  
   @media screen and (min-width: 960px) {
 

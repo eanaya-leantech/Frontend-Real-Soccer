@@ -10,7 +10,7 @@ const PlayerItem = ({id, name, position}) => (
         <td width={'20px'} className={position}>{position}</td>
         <td>{name}</td>
         <td width={'20px'}>
-            <IconButton onClick={() => alert('remove')}>
+            <IconButton>
                 <ImageNotDraggable width={'20px'} image={'MINIMUS'}/>
             </IconButton>
         </td>

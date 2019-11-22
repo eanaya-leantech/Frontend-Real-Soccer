@@ -101,7 +101,7 @@ const PlayerList = () => (
     <div className={'payerList'}>
         <section className="payerList-header">
             <Text component={'h3'} fontSize={'18px'}>Player List</Text>
-            <IconButton onClick={() => alert('add')}>
+            <IconButton>
                 <ImageNotDraggable width={'20px'} image={'USER_PLUS'}/>
             </IconButton>
         </section>
