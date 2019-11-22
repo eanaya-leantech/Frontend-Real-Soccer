@@ -59,6 +59,9 @@ input {
 
 .button.MuiButtonBase-root {
   background-color: #191e2b;
+  display: flex;
+  align-content: center;
+  justify-content: center;
   // width: "50%",
   color: #fff;
   width: 60%;
@@ -79,4 +82,8 @@ input {
 
 p.forgot:hover {
   text-decoration: underline;
+}
+
+.error{
+  border:  1px solid red;
 }

@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button, Box } from '@material-ui/core';
+import { Grid, Button, Box, CircularProgress } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Link from '@material-ui/core/Link';
 import clsx from 'clsx';
 import Layout from '../../../components/LayoutPreLogin';
 import ImageNotDraggable from '../../../components/ImageNotDraggable';
 import Text from '../../../components/Text/Text';
 import './styles.scss';
 import {connect} from 'react-redux'
-
+import {basicPassword,emailValidator} from '../../../utils/validators'
+import { signIn }from '../../../redux/actions/authActions'
 const useStyles = makeStyles({
     root: {
         '&:hover': {
@@ -61,15 +61,47 @@ const useStyles = makeStyles({
 function SpacingGrid(props) {
     // const [setSpacing] = React.useState(2);
     const [state, setState] = React.useState({
-        checkedB: true,
-    });
-    props.dispatch({type: 'SAVE_DATA'})
-    const handleChange = name => event => {
-        setState({ ...state, [name]: event.target.checked });
+        rememberMe: false
+    })
+    
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        let isCorrectMail=emailValidator(state.user)
+        let isCorrectPass=basicPassword(state.password)
+        
+        if(!isCorrectMail.isValid){
+            document.getElementsByName('user')[0].classList.add('error')
+        }else{
+            document.getElementsByName('user')[0].classList.remove('error')
+        }
+
+        if(!isCorrectPass.isValid){
+            document.getElementsByName('password')[0].classList.add('error')
+        }else{
+            document.getElementsByName('password')[0].classList.remove('error')
+        }
+        if(isCorrectMail.isValid && isCorrectPass.isValid){
+           props.signIn({
+            credentials:{
+                email: state.user,
+                password: state.password
+            },
+                redirect: props.history
+            },)
+        }
+
+        
+    }
+    const handleChange = e =>{
+            e.target.type==='checkbox'?
+            setState({ ...state, [e.target.name]: e.target.checked })
+            :setState({ ...state, [e.target.name]: e.target.value })
     };
     
+    
+    
     const classes = useStyles();
-    const preventDefault = event => event.preventDefault();
+
     return (
         <Layout>
             <Grid
@@ -95,10 +127,10 @@ function SpacingGrid(props) {
                     {/* <ImageNotDraggable className="logo" width={'30px'} cursor={'pointer'} image={'USER'}
                         onClick={() => console.log('soy login..')}
                     /> */}
-                    <input className="input" type="text" placeholder="Username"></input>
+                    <input className="input" type="text" name="user" onChange={handleChange} placeholder="Username"></input>
                 </Grid>
                 <Grid className="element" item>
-                    <input className="input" type="text" placeholder="Password"></input>
+                    <input className="input" type="password" name="password" onChange={handleChange} placeholder="Password"></input>
                 </Grid>
                 <Grid className="element spaceBetween">
                     <FormControlLabel
@@ -110,6 +142,8 @@ function SpacingGrid(props) {
                                 checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
                                 icon={<span className={classes.icon} />}
                                 inputProps={{ 'aria-label': 'decorative checkbox' }}
+                                name='rememberMe'
+                                onChange={handleChange}
                             // {...props}
                             />
                         }
@@ -124,9 +158,9 @@ function SpacingGrid(props) {
                 </Grid>
                 <Grid className="element" item>
                     <Box my={3}>
-                        <Button size="large" className="button shadow" >
+                        <Button size="large" className="button shadow" onClick={handleSubmit} >
                             <Text fontSize="1.2em" textAlign='center' component='h2'>
-                                Login
+                                {props.isLoading?<CircularProgress size='1em' />:'LOGIN'}
                             </Text>
                         </Button>
                     </Box>
@@ -136,8 +170,17 @@ function SpacingGrid(props) {
     );
 }
 
-const mapStateToProps=( state ) => {
-    return state
+const mapStateToProps = (state) => {
+    const {isLoading}= state.signProccess
+    return{
+        isLoading
+    }
 }
 
-export default connect(/* mapStateToProps */)(SpacingGrid)
+const mapDispatchToProps=(dispatch)=>{
+    return{ 
+        signIn: credentials =>dispatch(signIn(credentials))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SpacingGrid)
