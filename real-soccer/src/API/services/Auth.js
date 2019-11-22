@@ -34,6 +34,8 @@ export class Auth {
     }
 
     isAuthenticated() {
-        return loadStorage('token');
+
+        const {token} = loadStorage()||{};
+        return token
     }
 }
