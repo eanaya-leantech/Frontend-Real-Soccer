@@ -66,12 +66,14 @@ function SpacingGrid(props) {
     
     const handleSubmit = (e) =>{
         e.preventDefault()
-        let isCorrectMail=emailValidator(state.user)
+        let isCorrectUser;
         let isCorrectPass=basicPassword(state.password)
         
-        if(!isCorrectMail.isValid){
+        if(!state.user){
+            isCorrectUser=false;
             document.getElementsByName('user')[0].classList.add('error')
         }else{
+            isCorrectUser=true;
             document.getElementsByName('user')[0].classList.remove('error')
         }
 
@@ -80,10 +82,10 @@ function SpacingGrid(props) {
         }else{
             document.getElementsByName('password')[0].classList.remove('error')
         }
-        if(isCorrectMail.isValid && isCorrectPass.isValid){
+        if(isCorrectUser&& isCorrectPass.isValid){
            props.signIn({
             credentials:{
-                email: state.user,
+                username: state.user,
                 password: state.password
             },
                 redirect: props.history
