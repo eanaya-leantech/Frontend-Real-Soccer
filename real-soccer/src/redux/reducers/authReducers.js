@@ -6,8 +6,10 @@ export const signProccess = (state = initialState, action) => {
                 ...state,  userData: action.userData
             };
         case 'SIGN_IN_ERROR':
+
             return {
-                ...state, error: action.error.message
+                ...state, error: action.error
+                
             }
         case 'SIGN_IN_LOADING':
             return {

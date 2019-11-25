@@ -10,8 +10,9 @@ import ImageNotDraggable from '../../../components/ImageNotDraggable';
 import Text from '../../../components/Text/Text';
 import './styles.scss';
 import {connect} from 'react-redux'
-import {basicPassword,emailValidator} from '../../../utils/validators'
+import {basicPassword} from '../../../utils/validators'
 import { signIn }from '../../../redux/actions/authActions'
+
 const useStyles = makeStyles({
     root: {
         '&:hover': {
@@ -83,13 +84,14 @@ function SpacingGrid(props) {
             document.getElementsByName('password')[0].classList.remove('error')
         }
         if(isCorrectUser&& isCorrectPass.isValid){
-           props.signIn({
-            credentials:{
-                username: state.user,
-                password: state.password
-            },
-                redirect: props.history
-            },)
+                    props.signIn({
+                credentials:{
+                    username: state.user,
+                    password: state.password
+                },
+                    redirect: props.history
+                },)
+           
         }
 
         
@@ -118,8 +120,8 @@ function SpacingGrid(props) {
                         image={'PERSON'}
                         className={'card-math-img image'} />
                 </Grid>
-                <Grid className="element"  item>
-                    <Text fontSize='1.8em' textAlign='center' component='h1'>
+                <Grid className="element">
+                    <Text fontSize='1.8em' component='h1' textAlign='center'>
                         
                             Real Soccer
                        
@@ -153,7 +155,7 @@ function SpacingGrid(props) {
                         label="Remember me"
                     />
                     <Link to={'/forgotpassword'}>
-                        <Text fontSize=".7em" className="forgot" color="#707070" component='h3' textAlign='rigth'>
+                        <Text fontSize=".7em" className="forgot" color="#707070" component='h3' >
                             Forgot Password?
                         </Text>
                     </Link>
@@ -161,21 +163,24 @@ function SpacingGrid(props) {
                 <Grid className="element" item>
                     <Box my={3}>
                         <Button size="large" className="button shadow" onClick={handleSubmit} >
-                            <Text fontSize="1.2em" textAlign='center' component='h2'>
+                            <Text fontSize="1.2em" component='h2'>
                                 {props.isLoading?<CircularProgress size='1em' />:'LOGIN'}
                             </Text>
                         </Button>
                     </Box>
                 </Grid>
+                <div className={props.error?'error-login': null}>
+                {props.error?`${props.error}`:null}
+                </div>
             </Grid>
         </Layout>
     );
 }
 
 const mapStateToProps = (state) => {
-    const {isLoading}= state.signProccess
+    const {isLoading, error}= state.signProccess
     return{
-        isLoading
+        isLoading,error
     }
 }
 
