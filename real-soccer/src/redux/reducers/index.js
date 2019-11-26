@@ -1,9 +1,10 @@
-import {combineReducers} from "redux";
+import { combineReducers } from "redux";
 
-import {signProccess} from './authReducers'
+import { signProccess } from "./authReducers";
+
+import { register } from "./registerReducer";
 
 export default combineReducers({
-    signProccess
+  signProccess,
+  register
 });
-
-

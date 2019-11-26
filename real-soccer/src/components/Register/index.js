@@ -7,11 +7,12 @@ import {
   Checkbox,
   FormControl
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { useSelector, useDispatch } from "react-redux";
 import { onlyNumbers } from "../../utils/validators";
+import { registerStart } from "../../redux/actions/registerActions";
 
 import "./style.scss";
+
+import { connect } from "react-redux";
 
 function CheckboxLabels() {
   const [state, setState] = React.useState({
@@ -21,9 +22,6 @@ function CheckboxLabels() {
   const handleChange = name => event => {
     setState({ ...state, [name]: event.target.checked });
   };
-
-  const user = useSelector(state => state.user);
-  const dispatch = useDispatch();
 
   return (
     <FormGroup row>
@@ -63,15 +61,19 @@ const Register = props => {
     setErrors({
       ...error,
       [event.target.name]: onlyNumbers(event.target.name).message
+      //onlyNumbers
+      //hardPassword
+      //basicPassword
+      //emailValidator
     });
   };
 
   const handleSubmitRegister = event => {
-    // Llamado al API
-    // props.register(state);
     event.preventDefault();
-    console.log(state);
+    props.registerStart(state);
   };
+
+  console.log(props);
 
   return (
     <Grid
@@ -98,6 +100,7 @@ const Register = props => {
                 onChange={handleChange}
                 value={state.name}
                 name="name"
+                autoComplete="off"
               />
               {error.name && <span>{error.name}</span>}
               <input
@@ -107,6 +110,7 @@ const Register = props => {
                 onChange={handleChange}
                 value={state.username}
                 name="username"
+                autoComplete="off"
               />
               <input
                 type="text"
@@ -115,6 +119,7 @@ const Register = props => {
                 onChange={handleChange}
                 value={state.birthDay}
                 name="birthDay"
+                autoComplete="off"
               />
               <input
                 type="text"
@@ -123,6 +128,7 @@ const Register = props => {
                 onChange={handleChange}
                 value={state.email}
                 name="email"
+                autoComplete="off"
               />
               <input
                 type="text"
@@ -131,6 +137,7 @@ const Register = props => {
                 onChange={handleChange}
                 value={state.password}
                 name="password"
+                autoComplete="off"
               />
               <section className="check-info">
                 <CheckboxLabels></CheckboxLabels>
@@ -142,8 +149,9 @@ const Register = props => {
                   className="btn"
                   type="submit"
                 >
-                  Register
+                  {props.isLoading ? "Sending .." : "Register"}
                 </Button>
+                {props.error ? <p>{props.error}</p> : ""}
               </section>
             </form>
           </section>
@@ -154,11 +162,15 @@ const Register = props => {
 };
 
 const mapStateToProps = state => {
-  return { user: state.user };
+  return {
+    error: state.register.error,
+    isLoading: state.register.isLoading,
+    registerConfirm: state.register.registerConfirm
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-  // return { register: (user) => dispatch(register(user))}
+  return { registerStart: payload => dispatch(registerStart(payload)) };
 };
 
-export default Register;
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
