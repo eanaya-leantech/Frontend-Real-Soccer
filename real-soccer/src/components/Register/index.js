@@ -41,17 +41,17 @@ function CheckboxLabels() {
 
 const Register = props => {
   const [state, setState] = React.useState({
-    name: "",
+    displayName: "",
     username: "",
-    birthDay: "",
+    birthday: "",
     email: "",
     password: ""
   });
 
   const [error, setErrors] = React.useState({
-    name: null,
+    displayName: null,
     username: null,
-    birthDay: null,
+    birthday: null,
     email: null,
     password: null
   });
@@ -70,6 +70,8 @@ const Register = props => {
 
   const handleSubmitRegister = event => {
     event.preventDefault();
+    console.log(state);
+    
     props.registerStart(state);
   };
 
@@ -98,8 +100,8 @@ const Register = props => {
                 className="form-control mb-1"
                 placeholder="Name"
                 onChange={handleChange}
-                value={state.name}
-                name="name"
+                value={state.displayName}
+                name="displayName"
                 autoComplete="off"
               />
               {error.name && <span>{error.name}</span>}
@@ -117,8 +119,8 @@ const Register = props => {
                 className="form-control mb-1"
                 placeholder="Birth day"
                 onChange={handleChange}
-                value={state.birthDay}
-                name="birthDay"
+                value={state.birthday}
+                name="birthday"
                 autoComplete="off"
               />
               <input
