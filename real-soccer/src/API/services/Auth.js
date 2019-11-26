@@ -3,6 +3,11 @@ import {authRoutes} from "../routes/auth";
 import {loadStorage} from "../../tools/storage";
 
 export class Auth {
+    /**
+     *
+     * @param payload
+     * @returns {Promise<unknown|*>}
+     */
     async auth(payload) {
         try {
             const response = FETCH('post', authRoutes.auth, payload);
@@ -13,6 +18,11 @@ export class Auth {
         }
     }
 
+    /**
+     *
+     * @param payload
+     * @returns {Promise<unknown|*>}
+     */
     async register(payload) {
         try {
             const response = FETCH('post', authRoutes.register, payload);
@@ -23,6 +33,11 @@ export class Auth {
         }
     }
 
+    /**
+     *
+     * @param payload
+     * @returns {Promise<unknown|*>}
+     */
     async forgotPassword(payload) {
         try {
             const response = FETCH('post', authRoutes.forgotPassword, payload);
@@ -33,7 +48,13 @@ export class Auth {
         }
     }
 
+    /**
+     *
+     * @returns {any | undefined | boolean}
+     */
     isAuthenticated() {
-        return loadStorage('token');
+
+        const {token} = loadStorage()||{};
+        return token
     }
 }

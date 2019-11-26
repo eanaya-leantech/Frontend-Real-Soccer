@@ -1,6 +1,15 @@
 import axios from 'axios';
 import API from './index'
 
+/**
+ *
+ * @param method
+ * @param endpoint
+ * @param payload
+ * @param url
+ * @returns {Promise<unknown>}
+ * @constructor
+ */
 export const FETCH = async (method, endpoint, payload = {}, url = null) => {
 
     const Authorization = await API.authService.isAuthenticated();

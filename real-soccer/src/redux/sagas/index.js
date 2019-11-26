@@ -4,9 +4,9 @@ import {all} from 'redux-saga/effects'
  */
 
 import UserSagas from './userSagas'
-
+import AuthSagas from './authSagas'
 function * rootSaga () {
-    yield all([UserSagas(),])
+    yield all([UserSagas(), AuthSagas()])
 }
 
 export default rootSaga

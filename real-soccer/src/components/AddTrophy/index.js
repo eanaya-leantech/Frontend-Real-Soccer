@@ -5,7 +5,7 @@ import './styles.scss';
 
 const AddTrophy = () => (
     <div className={'trophy'}>
-      <IconButton className={'trophy-icon'}  onClick={() => alert('add')}>
+      <IconButton className={'trophy-icon'}>
           <ImageNotDraggable width={'20px'} image={'PLUS'}  cursor={'pointer'}/>
       </IconButton>
     </div>

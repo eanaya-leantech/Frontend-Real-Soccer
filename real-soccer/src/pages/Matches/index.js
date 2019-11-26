@@ -13,7 +13,7 @@ const Matches = () => {
                    {
                        data.map(match => (
                            <Grid item sm={12} md={3} key={match}>
-                                   <MatchItem  onClick={() => alert('click me..')}/>
+                                   <MatchItem/>
                            </Grid>
                        ))
                    }

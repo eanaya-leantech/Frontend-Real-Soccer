@@ -1,8 +1,9 @@
 import {combineReducers} from "redux";
-import {user} from "./userReducer";
+
+import {signProccess} from './authReducers'
 
 export default combineReducers({
-    user
+    signProccess
 });
 
 

@@ -59,6 +59,9 @@ input {
 
 .button.MuiButtonBase-root {
   background-color: #191e2b;
+  display: flex;
+  align-content: center;
+  justify-content: center;
   // width: "50%",
   color: #fff;
   width: 60%;
@@ -79,4 +82,33 @@ input {
 
 p.forgot:hover {
   text-decoration: underline;
+}
+
+.error{
+  border:  1px solid red;
+}
+
+.error-login{
+  font-size: .5em;
+  padding: .5em;
+  border-radius: 5%;
+  animation-name: errorAnimation;
+  animation-duration: 2s;
+  color: rgba(255, 255, 255, 0.90);
+  background: rgba(233, 95, 123, 0.90);
+}
+
+@keyframes errorAnimation{
+  from {
+    background: rgba(233, 95, 123, 0.2);
+    color: rgba(255, 255, 255, 0.10);
+  }
+  50%{
+    background: rgba(233, 95, 123, 0.50);
+    color: rgba(255, 255, 255, 0.50);
+  }
+  100%{
+    background: rgba(233, 95, 123, 0.90);
+    color: rgba(255, 255, 255, 0.90);
+  }
 }
