@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Box, CircularProgress } from '@material-ui/core';
@@ -59,47 +59,37 @@ const useStyles = makeStyles({
 
 
 function SpacingGrid(props) {
-    // const [setSpacing] = React.useState(2);
-    const [state, setState] = React.useState({
-        rememberMe: false
-    })
+    const [username, setUsername] = React.useState('')
+    const [password, setPassword] = React.useState('')
+    const [isChecked, setChecked] = React.useState(false)
+    const [correctUser, setCorrectUser] = React.useState(()=>(
+        username.length>0?true:false
+    ))
+    const [correctPass, setCorrectPass] = React.useState(()=>(
+        basicPassword(password).isValid
+    ))
+    const [inputError, setInputError] = React.useState({ userInput: false, passwordInput: false})
+    useEffect(()=>{
+        setCorrectUser(username.length>0?true:false)
+        setCorrectPass(basicPassword(password).isValid)
+    }, [username,password,correctUser,correctPass])
     
     const handleSubmit = (e) =>{
         e.preventDefault()
-        let isCorrectUser;
-        let isCorrectPass=basicPassword(state.password)
-        
-        if(!state.user){
-            isCorrectUser=false;
-            document.getElementsByName('user')[0].classList.add('error')
-        }else{
-            isCorrectUser=true;
-            document.getElementsByName('user')[0].classList.remove('error')
-        }
-
-        if(!isCorrectPass.isValid){
-            document.getElementsByName('password')[0].classList.add('error')
-        }else{
-            document.getElementsByName('password')[0].classList.remove('error')
-        }
-        if(isCorrectUser&& isCorrectPass.isValid){
-           props.signIn({
-            credentials:{
-                username: state.user,
-                password: state.password
-            },
+        setInputError({ passwordInput: !correctPass, userInput: !correctUser})
+        if(correctPass && correctUser){
+            props.signIn({
+                credentials:{
+                    username,
+                    password
+                },
                 redirect: props.history
             },)
+           
         }
 
         
-    }
-    const handleChange = e =>{
-            e.target.type==='checkbox'?
-            setState({ ...state, [e.target.name]: e.target.checked })
-            :setState({ ...state, [e.target.name]: e.target.value })
-    };
-    
+    }  
     
     
     const classes = useStyles();
@@ -126,13 +116,14 @@ function SpacingGrid(props) {
                     </Text>
                 </Grid>
                 <Grid className="element" item>
-                    {/* <ImageNotDraggable className="logo" width={'30px'} cursor={'pointer'} image={'USER'}
-                        onClick={() => console.log('soy login..')}
-                    /> */}
-                    <input className="input" type="text" name="user" onChange={handleChange} placeholder="Username"></input>
+                    <input className={`input ${inputError.userInput?'error':null}`} type="text" name="user" onChange={(e)=>{
+                        setUsername(e.target.value)
+                    }} placeholder="Username"></input>
                 </Grid>
                 <Grid className="element" item>
-                    <input className="input" type="password" name="password" onChange={handleChange} placeholder="Password"></input>
+                    <input className={`input ${inputError.passwordInput?'error':null}`} type="password" name="password" onChange={(e)=>{
+                        setPassword(e.target.value)
+                    }} placeholder="Password"></input>
                 </Grid>
                 <Grid className="element spaceBetween">
                     <FormControlLabel
@@ -145,7 +136,9 @@ function SpacingGrid(props) {
                                 icon={<span className={classes.icon} />}
                                 inputProps={{ 'aria-label': 'decorative checkbox' }}
                                 name='rememberMe'
-                                onChange={handleChange}
+                                onChange={(e)=>{
+                                    setChecked(e.target.checked)
+                                }}
                             // {...props}
                             />
                         }
