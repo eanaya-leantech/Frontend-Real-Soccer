@@ -3,9 +3,7 @@
  * @type {{forgotPassword: string, auth: string, register: string}}
  */
 export const authRoutes = {
-    auth: '/auth',
-    register: '/auth/register',
-    forgotPassword: '/auth/forgotPassword',
-    register: '/register',
-    private: '/private'
+  auth: "/auth",
+  register: "/auth/register",
+  forgotPassword: "/auth/forgotPassword"
 };

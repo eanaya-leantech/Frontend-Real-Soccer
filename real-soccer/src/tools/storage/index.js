@@ -3,7 +3,7 @@ export const loadStorage = (key = 'real-app') => {
         const serializedData = localStorage.getItem(key);
         return (serializedData === null) ? undefined : JSON.parse(serializedData);
     } catch (error) {
-        throw new Error('');
+        return undefined;
     }
 };
 export const saveStorage = (state, key = 'real-app') => {

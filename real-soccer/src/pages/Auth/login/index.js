@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Box, CircularProgress } from '@material-ui/core';
@@ -12,7 +12,6 @@ import './styles.scss';
 import {connect} from 'react-redux'
 import {basicPassword} from '../../../utils/validators'
 import { signIn }from '../../../redux/actions/authActions'
-
 const useStyles = makeStyles({
     root: {
         '&:hover': {
@@ -39,7 +38,7 @@ const useStyles = makeStyles({
         },
     },
     checkedIcon: {
-        backgroundColor: 'red',
+        backgroundColor: '#191e2b',
         backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
         '&:before': {
             display: 'block',
@@ -59,49 +58,38 @@ const useStyles = makeStyles({
 
 
 
-function Login(props) {
-    // const [setSpacing] = React.useState(2);
-    const [state, setState] = React.useState({
-        rememberMe: false
-    })
+function SpacingGrid(props) {
+    const [username, setUsername] = React.useState('')
+    const [password, setPassword] = React.useState('')
+    const [isChecked, setChecked] = React.useState(false)
+    const [correctUser, setCorrectUser] = React.useState(()=>(
+        username.length>0?true:false
+    ))
+    const [correctPass, setCorrectPass] = React.useState(()=>(
+        basicPassword(password).isValid
+    ))
+    const [inputError, setInputError] = React.useState({ userInput: false, passwordInput: false})
+    useEffect(()=>{
+        setCorrectUser(username.length>0?true:false)
+        setCorrectPass(basicPassword(password).isValid)
+    }, [username,password,correctUser,correctPass])
     
     const handleSubmit = (e) =>{
         e.preventDefault()
-        let isCorrectUser;
-        let isCorrectPass=basicPassword(state.password)
-        
-        if(!state.user){
-            isCorrectUser=false;
-            document.getElementsByName('user')[0].classList.add('error')
-        }else{
-            isCorrectUser=true;
-            document.getElementsByName('user')[0].classList.remove('error')
-        }
-
-        if(!isCorrectPass.isValid){
-            document.getElementsByName('password')[0].classList.add('error')
-        }else{
-            document.getElementsByName('password')[0].classList.remove('error')
-        }
-        if(isCorrectUser&& isCorrectPass.isValid){
-                    props.signIn({
+        setInputError({ passwordInput: !correctPass, userInput: !correctUser})
+        if(correctPass && correctUser){
+            props.signIn({
                 credentials:{
-                    username: state.user,
-                    password: state.password
+                    username,
+                    password
                 },
-                    redirect: props.history
-                },)
+                redirect: props.history
+            },)
            
         }
 
         
-    }
-    const handleChange = e =>{
-            e.target.type==='checkbox'?
-            setState({ ...state, [e.target.name]: e.target.checked })
-            :setState({ ...state, [e.target.name]: e.target.value })
-    };
-    
+    }  
     
     
     const classes = useStyles();
@@ -120,32 +108,36 @@ function Login(props) {
                         image={'PERSON'}
                         className={'card-math-img image'} />
                 </Grid>
-                <Grid className="element">
-                    <Text fontSize='1.8em' component='h1' textAlign='center'>                        
-                            Real Soccer                       
+                <Grid className="element"  item>
+                    <Text fontSize='1.8em' textAlign='center' component='h1'>
+                        
+                            Real Soccer
+                       
                     </Text>
                 </Grid>
                 <Grid className="element" item>
-                    {/* <ImageNotDraggable className="logo" width={'30px'} cursor={'pointer'} image={'USER'}
-                        onClick={() => console.log('soy login..')}
-                    /> */}
-                    <input className="input" type="text" name="user" onChange={handleChange} placeholder="Username"></input>
+                    <input className={`input ${inputError.userInput?'error':null}`} type="text" name="user" onChange={(e)=>{
+                        setUsername(e.target.value)
+                    }} placeholder="Username"></input>
                 </Grid>
                 <Grid className="element" item>
-                    <input className="input" type="password" name="password" onChange={handleChange} placeholder="Password"></input>
+                    <input className={`input ${inputError.passwordInput?'error':null}`} type="password" name="password" onChange={(e)=>{
+                        setPassword(e.target.value)
+                    }} placeholder="Password"></input>
                 </Grid>
                 <Grid className="element spaceBetween">
                     <FormControlLabel
                         control={
                             <Checkbox
-                                className={classes.root}
                                 disableRipple
                                 color="default"
                                 checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
                                 icon={<span className={classes.icon} />}
                                 inputProps={{ 'aria-label': 'decorative checkbox' }}
                                 name='rememberMe'
-                                onChange={handleChange}
+                                onChange={(e)=>{
+                                    setChecked(e.target.checked)
+                                }}
                             // {...props}
                             />
                         }
@@ -153,7 +145,7 @@ function Login(props) {
                         label="Remember me"
                     />
                     <Link to={'/forgotpassword'}>
-                        <Text fontSize=".7em" className="forgot" color="#707070" component='h3' >
+                        <Text fontSize=".7em" className="forgot" color="#707070" component='h3' textAlign='rigth'>
                             Forgot Password?
                         </Text>
                     </Link>
@@ -161,18 +153,28 @@ function Login(props) {
                 <Grid className="element" item>
                     <Box my={3}>
                         <Button size="large" className="button shadow" onClick={handleSubmit} >
-                            <Text fontSize="1.2em" component='h2'>
+                            <Text fontSize="1.2em" textAlign='center' component='h2'>
                                 {props.isLoading?<CircularProgress size='1em' />:'LOGIN'}
                             </Text>
                         </Button>
                     </Box>
                 </Grid>
-                <div className={props.error?'error-login': null}>
-                {props.error?`${props.error}`:null}
-                </div>
             </Grid>
         </Layout>
     );
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    const {isLoading}= state.signProccess
+    return{
+        isLoading
+    }
+}
+
+const mapDispatchToProps=(dispatch)=>{
+    return{ 
+        signIn: credentials =>dispatch(signIn(credentials))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SpacingGrid)
