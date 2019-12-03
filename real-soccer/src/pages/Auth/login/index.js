@@ -59,7 +59,7 @@ const useStyles = makeStyles({
 
 
 
-function SpacingGrid(props) {
+function Login(props) {
     // const [setSpacing] = React.useState(2);
     const [state, setState] = React.useState({
         rememberMe: false
@@ -121,10 +121,8 @@ function SpacingGrid(props) {
                         className={'card-math-img image'} />
                 </Grid>
                 <Grid className="element">
-                    <Text fontSize='1.8em' component='h1' textAlign='center'>
-                        
-                            Real Soccer
-                       
+                    <Text fontSize='1.8em' component='h1' textAlign='center'>                        
+                            Real Soccer                       
                     </Text>
                 </Grid>
                 <Grid className="element" item>
@@ -177,17 +175,4 @@ function SpacingGrid(props) {
     );
 }
 
-const mapStateToProps = (state) => {
-    const {isLoading, error}= state.signProccess
-    return{
-        isLoading,error
-    }
-}
-
-const mapDispatchToProps=(dispatch)=>{
-    return{ 
-        signIn: credentials =>dispatch(signIn(credentials))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SpacingGrid)
+export default Login;
