@@ -20,7 +20,8 @@
         }
       
         & .info {
-          width: calc(100% - 200px);
+          width: 100%;
+          text-align: center;
         }
     
         & .btn {
@@ -57,6 +58,9 @@
                 margin-left: 10px;
             }
         }
+        & .form-control {
+            margin-top: 7px;
+        }
         & .btn-info {
             display: flex;
             justify-content: center;
@@ -65,7 +69,6 @@
             & .btn {
                 width: 150px;
                 height: 35px;
-                border-radius: 10px;
                 background-color: #9F4958;
                 color: white;
                 cursor: pointer;
