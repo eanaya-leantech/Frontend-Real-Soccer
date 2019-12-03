@@ -94,7 +94,7 @@ class ForgotPassword extends Component {
                     direction="column"
                     alignItems="center"
                     className={`forgot-password-container shadow`}>
-                    <Grid item className={'card-math-img image element'}>
+                    <Grid item className={'card-math-img-pass image element'}>
                         {/* Show the page Logo */}
                         <ImageNotDraggable
                             image={'LOGO'}
@@ -122,7 +122,7 @@ class ForgotPassword extends Component {
                                 startAdornment={<InputAdornment position="start"><ImageNotDraggable image={'EMAIL'} width={'1.4em'} /></InputAdornment>} // It incorporates the image at the beginning of the field
                                 placeholder="Enter your email address"
                             />                                                     
-                            <Button size="large" className="button shadow" type="submit">                       
+                            <Button size="large" className="shadow" id="button-password" type="submit">                       
                                 Send reset email                        
                             </Button>
                         </form>

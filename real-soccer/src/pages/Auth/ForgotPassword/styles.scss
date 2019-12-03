@@ -19,7 +19,7 @@ $color-field: #171C28;
 }
 
 // Image container
-.card-math-img {
+.card-math-img-pass {
   width: 100px;
   height: 100px;
   background: $color-background-logo-button;
@@ -34,15 +34,16 @@ $color-field: #171C28;
   margin-bottom: 1em;
 }
 // Button
-.button.MuiButtonBase-root {
+#button-password {
   background-color: $color-background-logo-button;
   color: #fff;
   width: 60%;
   display: block;
+  margin: auto;
   margin-top: 1em;
 }
 
-.button.MuiButtonBase-root:hover{
+.button-password:hover{
   background-color: $color-background-logo-button-hover;
 }
 
@@ -62,14 +63,9 @@ input[placeholder] {
 }
 
 // Image container
-.MuiGrid-root.card-math-img.image.element.MuiGrid-item {
+.MuiGrid-root.card-math-img-pass.image.element.MuiGrid-item {
   margin-top: 3.2em;
   margin-bottom: 1em;
-}
-
-// Grid items
-.MuiGrid-root.element.MuiGrid-item {
-  margin-top: 1em;
 }
 
 #img-logo {
