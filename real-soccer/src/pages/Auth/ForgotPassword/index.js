@@ -67,14 +67,14 @@ class ForgotPassword extends Component {
             try {
                 const response = await API.authService.forgotPassword(email);
                 // Check if a successful response was received from the server to show the user a successful message 
-                //console.log("Response: ",response.data.msg);
+                console.log("Response: ",response.data.msg);
                 if (response.status === 200) {
                     this.setState({
                         recoveryEmailSent: true, // Successful message is enabled
                     });
                 }
             } catch (error) {
-                //console.error(error.response.data);
+                console.error('Error: ', error.response);
                 // Check if a non-existent email address response was received from the server to show the user a error message
                 /*if (error.response.data === 'email not in db') {
                     this.setState({

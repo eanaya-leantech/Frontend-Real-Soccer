@@ -4,6 +4,8 @@ import ImageNotDraggable from '../../../components/ImageNotDraggable'; // To use
 import Text from '../../../components/Text/Text'; // To use Text Component
 import Layout from '../../../components/LayoutPreLogin'; // To use the same login container background
 import PinInput from 'react-pin-input'; // It is a react module that allows to use a pin input (numerical digits password)
+import { connect } from 'react-redux';
+import { signIn }from '../../../redux/actions/authActions';
 import './styles.scss';
 
 /**
@@ -56,7 +58,8 @@ class ResetPassword extends Component {
      * @todo Implement this function to recieve response from backend 
      */
     savePassword = async (e) => {        
-    e.preventDefault();        
+    e.preventDefault(); 
+        console.log('Props', this.props);       
         const { value } = this.state; 
         // Check if the Pin was not entered to show the user a error message
         if (value === '') {
@@ -122,7 +125,7 @@ class ResetPassword extends Component {
                             <Button size="large" className="button shadow" type="submit">                       
                                 Reset password                        
                             </Button>
-                        </form>
+                         </form>
                         {/* show messages in the view */}
                         <Text component={'span'} fontSize={'0.8em'} color={'red'} className="message">
                             {/* Show error message when the email address is not entered in the email field */}
@@ -137,4 +140,17 @@ class ResetPassword extends Component {
     }
 };
 
-export default ResetPassword;
+const mapStateToProps = (state) => {
+    const {isLoading, error}= state.signProccess
+    return{
+        isLoading,error
+    }
+}
+
+const mapDispatchToProps=(dispatch)=>{
+    return{ 
+        signIn: credentials =>dispatch(signIn(credentials))
+    }
+}
+// export default ResetPassword;
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword)
