@@ -50,6 +50,21 @@ export class Auth {
 
     /**
      *
+     * @param payload
+     * @returns {Promise<unknown|*>}
+     */
+    async resetPassword(payload) {
+        try {
+            const response = FETCH('post', authRoutes.resetPassword, payload);
+            //here validate response data.
+            return response;
+        } catch (error) {
+            return error;
+        }
+    }
+
+    /**
+     *
      * @returns {any | undefined | boolean}
      */
     isAuthenticated() {
