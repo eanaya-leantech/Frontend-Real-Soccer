@@ -53,6 +53,6 @@ export class Auth {
      * @returns {any | undefined | boolean}
      */
     isAuthenticated() {
-        return loadStorage('token')
+        return loadStorage('token') || true
     }
 }
