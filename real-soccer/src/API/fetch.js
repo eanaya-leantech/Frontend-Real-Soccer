@@ -21,9 +21,10 @@ export const FETCH = (method, endpoint, params = {}, url = null) => {
     });
 
     return new Promise(async (resolve, reject) => {
-        if (instance[method.toLocaleLowerCase()]) {
+        const _method = instance[method.toLocaleLowerCase()]
+        if (_method) {
             try {
-                const response = await instance[method](URL, params);
+                const response = await instance[_method](URL, params);
                 return resolve(response);
             } catch (error) {
                 return reject(error);
