@@ -5,7 +5,7 @@ import Text from '../../../components/Text/Text'; // To use Text Component
 import Layout from '../../../components/LayoutPreLogin'; // To use the same login container background
 import PinInput from 'react-pin-input'; // It is a react module that allows to use a pin input (numerical digits password)
 import { connect } from 'react-redux';
-import { signIn }from '../../../redux/actions/authActions';
+import { resetPasswordStart } from '../../../redux/actions/resetPasswordActions';
 import './styles.scss';
 
 /**
@@ -22,6 +22,7 @@ class ResetPassword extends Component {
             secret: true,           // To specify whether the password will be visible or not. By default the value will be true to indicate that the password will be hidden
             pinNotEntered: false,   // Error message when the Pin is not entered in the input fields
             pinShortLength: false,  // Error message when the Pin is less than 4 digits
+            errorSendingData: false,
         };
     }
 
@@ -49,7 +50,8 @@ class ResetPassword extends Component {
             value: value,
             pinNotEntered: false,   // Error message when the Pin is not entered in the input fields
             pinShortLength: false,  // Error message when the Pin is less than 4 digits
-        });
+            errorSendingData: false,
+        });        
       };
 
     /**
@@ -57,10 +59,9 @@ class ResetPassword extends Component {
      * then makes calls to the server sending the new user pin
      * @todo Implement this function to recieve response from backend 
      */
-    savePassword = async (e) => {        
-    e.preventDefault(); 
-        console.log('Props', this.props);       
-        const { value } = this.state; 
+    handleSubmitNewPassword = async (e) => {        
+    e.preventDefault();              
+        const { value } = this.state;
         // Check if the Pin was not entered to show the user a error message
         if (value === '') {
             this.setState({
@@ -74,11 +75,18 @@ class ResetPassword extends Component {
         } // If the Pin was entered and valid then a request is made to the server
         else {
             // Make code here
+            this.props.resetPasswordStart();
+            console.log('Props: ', this.props); 
+            if(this.props.error=="Error sending data"){
+                this.setState({
+                    errorSendingData: true, // Error message is enabled
+                });
+            }
         }   
     };
 
     render() {
-        const { secret, pinNotEntered, pinShortLength } = this.state;
+        const { secret, pinNotEntered, pinShortLength, errorSendingData } = this.state;
         return (
             <Layout>
                 <Grid container
@@ -104,7 +112,7 @@ class ResetPassword extends Component {
                     </Grid>
                     <Grid className="element" item>
                         {/* Form to change password */}
-                        <form onSubmit={this.savePassword}>                        
+                        <form onSubmit={this.handleSubmitNewPassword}>                        
                             <Grid className="element pin-section" item>
                                 {/* Pin field that receives four numerical digits */}
                                 <PinInput
@@ -123,7 +131,7 @@ class ResetPassword extends Component {
                                 </IconButton>
                             </Grid>
                             <Button size="large" className="button shadow" type="submit">                       
-                                Reset password                        
+                                {this.props.isLoading ? "Sending .." : "Reset password"}                        
                             </Button>
                          </form>
                         {/* show messages in the view */}
@@ -132,7 +140,9 @@ class ResetPassword extends Component {
                             {pinNotEntered && ('The password cannot be null')}
                             {/* Show error message when the Pin is less than 4 digits */}
                             {pinShortLength && ('The password must have 4 digits')}
-                        </Text>           
+                            {/* Show error message */}
+                            {errorSendingData && ('Error sending data')}
+                        </Text>
                     </Grid>
                 </Grid>
             </Layout >
@@ -140,16 +150,16 @@ class ResetPassword extends Component {
     }
 };
 
-const mapStateToProps = (state) => {
-    const {isLoading, error}= state.signProccess
+const mapStateToProps = state => {
+    const {isLoading, error, resetPasswordConfirm} = state.resetPassword;
     return{
-        isLoading,error
+        isLoading, error, resetPasswordConfirm
     }
 }
 
-const mapDispatchToProps=(dispatch)=>{
+const mapDispatchToProps = dispatch => {
     return{ 
-        signIn: credentials =>dispatch(signIn(credentials))
+        resetPasswordStart: payload => dispatch(resetPasswordStart(payload))
     }
 }
 // export default ResetPassword;

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Grid, Button, InputAdornment, OutlinedInput } from '@material-ui/core'; // "InputAdornment" allows to incorporate an image into a "OutlinedInput" text field
+import { Grid, Button, InputAdornment, OutlinedInput, CircularProgress } from '@material-ui/core'; // "InputAdornment" allows to incorporate an image into a "OutlinedInput" text field
 import ImageNotDraggable from '../../../components/ImageNotDraggable'; // To use LOGO and EMAIL SVG images
 import Text from '../../../components/Text/Text'; // To use Text Component
 import Layout from '../../../components/LayoutPreLogin';  // To use the same login container background
 import { emailValidator } from '../../../utils/validators';  // To use email validator 
 import API from '../../../API/index'; //To make calls to the server
+import { connect } from 'react-redux';
+import { recoverPasswordStart } from '../../../redux/actions/forgotPasswordActions';
 import './styles.scss';
 
 /**
@@ -22,6 +24,7 @@ class ForgotPassword extends Component {
             recoveryEmailSent: false, // Successfull message when a email is sent to the user to reset the password
             mailNotEntered: false,    // Error message when the email address is not entered in the email field
             invalidEmail: false,      // Error message when the email is invalid
+            errorSendingData: false,
         };
     }
 
@@ -38,6 +41,7 @@ class ForgotPassword extends Component {
             recoveryEmailSent: false,   // Successfull message when a email is sent to the user to reset the password
             mailNotEntered: false,      // Error message when the email address is not entered in the email field
             invalidEmail: false,        // Error message when the email is invalid
+            errorSendingData: false,
         });
     };
 
@@ -48,7 +52,7 @@ class ForgotPassword extends Component {
      * from backend about the existence of email address
      * and sending the password reset link
      */
-    sendEmail = async (e) => {              
+    hanldeSubmitSendEmail = async (e) => {              
         e.preventDefault();    
         const { email } = this.state;      
         // Check if the email address was not entered to show the user a error message
@@ -64,29 +68,18 @@ class ForgotPassword extends Component {
         } // If the email address was entered and valid then a request is made to the server
         else {
             // Make code here
-            try {
-                const response = await API.authService.forgotPassword(email);
-                // Check if a successful response was received from the server to show the user a successful message 
-                console.log("Response: ",response.data.msg);
-                if (response.status === 200) {
-                    this.setState({
-                        recoveryEmailSent: true, // Successful message is enabled
-                    });
-                }
-            } catch (error) {
-                console.error('Error: ', error.response);
-                // Check if a non-existent email address response was received from the server to show the user a error message
-                /*if (error.response.data === 'email not in db') {
-                    this.setState({
-                        userDoesNotExist: true, // Error message is enabled
-                    });
-                }*/
+            this.props.recoverPasswordStart();
+            console.log('Props: ', this.props); 
+            if(this.props.error=="Error sending data"){
+                this.setState({
+                    errorSendingData: true, // Error message is enabled
+                });
             }
         }
     };
 
     render() {
-        const { email, recoveryEmailSent, mailNotEntered, userDoesNotExist, invalidEmail } = this.state;
+        const { email, recoveryEmailSent, mailNotEntered, userDoesNotExist, invalidEmail, errorSendingData } = this.state;
         return (
             <Layout>
                 <Grid container
@@ -112,7 +105,7 @@ class ForgotPassword extends Component {
                     </Grid>
                     <Grid className="element" item>
                         {/* Form to enter email address */}
-                        <form onSubmit={this.sendEmail}>
+                        <form onSubmit={this.hanldeSubmitSendEmail}>
                             {/* OutlinedInput is used as a email field with image
                                 InputAdornment allows to incorporate the EMAIL SVG image into the OutlinedInput text field.
                                 startAdornment locates the image at the beginning of the OutlinedInput text field */}                           
@@ -122,8 +115,8 @@ class ForgotPassword extends Component {
                                 startAdornment={<InputAdornment position="start"><ImageNotDraggable image={'EMAIL'} width={'1.4em'} /></InputAdornment>} // It incorporates the image at the beginning of the field
                                 placeholder="Enter your email address"
                             />                                                     
-                            <Button size="large" className="shadow" id="button-password" type="submit">                       
-                                Send reset email                        
+                            <Button size="large" className="shadow" id="button-password" type="submit">
+                                {this.props.isLoading ? "Sending .." : "Send reset email"}                  
                             </Button>
                         </form>
                         {/* Show a successful message when the email has been sent */}
@@ -138,6 +131,8 @@ class ForgotPassword extends Component {
                             {userDoesNotExist && ('That email address is not recognized. Please try again or register for a new account')}
                             {/* Show error message when the email is invalid */}   
                             {invalidEmail && ('The email address is invalid. It should seems like example@email.com')}
+                            {/* Show error message */}
+                            {errorSendingData && ('Error sending data')}
                         </Text>  
                     </Grid>
                 </Grid>
@@ -146,4 +141,18 @@ class ForgotPassword extends Component {
     }
 };
 
-export default ForgotPassword;
+const mapStateToProps = state => {
+    const {isLoading, error, forgotPasswordConfirm} = state.forgotPassword;
+    return{
+        isLoading, error, forgotPasswordConfirm
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{ 
+        recoverPasswordStart: payload => dispatch(recoverPasswordStart(payload))
+    }
+}
+
+// export default ResetPassword;
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword)
