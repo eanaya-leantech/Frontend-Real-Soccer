@@ -14,6 +14,7 @@ const ServerError = React.lazy(() => import('../Errors/ServerError'));
 const Register = React.lazy(() => import("../Register"));
 const ForgotPassword = React.lazy(() => import("../Auth/ForgotPassword"));
 const ResetPassword = React.lazy(() => import("../Auth/ResetPassword"));
+const Gym = React.lazy(() => import('../Gym'))
 
 
 const Routes = () => (
@@ -28,7 +29,7 @@ const Routes = () => (
             <PrivateRoute path={'/store'} component={NotFound}/>
             <PrivateRoute path={'/uniforms'} component={ServerError}/>
             <PrivateRoute path={'/trophy'} component={PermissionDenied}/>
-            <PrivateRoute path={'/gym'} component={NotFound}/>
+            <PrivateRoute path={'/gym'} component={Gym}/>
             <PrivateRoute path={'/friends'} component={NotFound}/>
             <PrivateRoute path={'/analytics'} component={NotFound}/>
             <Route component={NotFound}/>

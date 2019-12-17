@@ -1,0 +1,11 @@
+.gym-page{
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+.carousel-row{
+  overflow-x: hidden;
+  flex-wrap: nowrap !important;
+  margin-top: .5em;
+  margin-bottom: 2em;
+}
